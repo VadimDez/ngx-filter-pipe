@@ -12,7 +12,7 @@ import { Ng2FilterPipe } from './shared/ng2-filter.pipe';
 export class Ng2FilterPipeAppComponent {
   title = 'ng2-filter-pipe works!';
 
-  data = [
+  objects = [
     {
       test: 'value'
     },
@@ -26,4 +26,10 @@ export class Ng2FilterPipeAppComponent {
       test: 'value3'
     }
   ];
+
+  strings = [
+    'asd',
+    'qwe',
+    'zxc'
+  ]
 }

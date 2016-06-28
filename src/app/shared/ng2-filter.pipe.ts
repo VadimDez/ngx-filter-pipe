@@ -11,8 +11,14 @@ import { Pipe, Injectable } from '@angular/core';
 @Injectable()
 export class Ng2FilterPipe {
 
-  transform(array: any[], filter: any): any {
-    return array.filter(value => {
+  private filterByString(filter) {
+    return value => {
+      return value === filter;
+    }
+  }
+
+  private filterByObject(filter) {
+    return value => {
       for (let key in filter) {
         if (value[key] !== filter[key]) {
           return false;
@@ -20,6 +26,21 @@ export class Ng2FilterPipe {
       }
 
       return true;
-    });
+    }
+  }
+
+  transform(array: any[], filter: any): any {
+    const type = typeof filter;
+    let filterFunction;
+
+    if (type === 'string') {
+      return array.filter(this.filterByString(filter));
+    }
+
+    if (type === 'object') {
+      return array.filter(this.filterByObject(filter));
+    }
+
+    return [];
   }
 }

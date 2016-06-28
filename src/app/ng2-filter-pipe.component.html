@@ -1,4 +1,8 @@
 <h1>
   {{title}}
 </h1>
-<div *ngFor="let item of data | filterBy: { test: 'value' }"> {{ item | json }}</div>
+<h5>Objects</h5>
+<div *ngFor="let item of objects | filterBy: { test: 'value' }"> {{ item | json }}</div>
+
+<h5>Strings</h5>
+<div *ngFor="let string of strings | filterBy: 'asd'"> {{ string }}</div>
