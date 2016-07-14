@@ -1,7 +1,9 @@
 # ng2-filter-pipe
 
-Filter by object
+> Filter arrays
+ 
+Angular 2 pipeline for filtering arrays.
 
 
-# Lisence
+# License
 MIT

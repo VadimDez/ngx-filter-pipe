@@ -10,26 +10,48 @@ import { Ng2FilterPipe } from './shared/ng2-filter.pipe';
 })
 
 export class Ng2FilterPipeAppComponent {
-  title = 'ng2-filter-pipe works!';
 
+  objectsFilter = { test: 'value', num: 1, nested: { val: 1 } };
   objects = [
     {
-      test: 'value'
+      test: 'value',
+      num: 1,
+      nested: {
+        val: 1
+      }
     },
     {
-      test: 'value1'
+      test: 'value1',
+      num: 12
     },
     {
-      test: 'value2'
+      test: 'value2',
+      num: 25
     },
     {
-      test: 'value3'
+      test: 'value3',
+      num: 111,
+      nested: {
+        val: 2
+      }
     }
   ];
 
+  stringsFilter = 'a';
   strings = [
     'asd',
     'qwe',
     'zxc'
+  ];
+
+  numbersFilter = 1;
+  numbers = [
+    1,
+    2,
+    3,
+    12,
+    30,
+    21,
+    111
   ]
 }

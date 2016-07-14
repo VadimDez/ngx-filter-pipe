@@ -1,8 +1,54 @@
 <h1>
-  {{title}}
+    ng2-filter-pipe
 </h1>
-<h5>Objects</h5>
-<div *ngFor="let item of objects | filterBy: { test: 'value' }"> {{ item | json }}</div>
 
-<h5>Strings</h5>
-<div *ngFor="let string of strings | filterBy: 'asd'"> {{ string }}</div>
+<div>
+    <h4>Objects</h4>
+    <h5>Before filtering</h5>
+    {{ objects | json }}
+    <h5>After filtering</h5>
+    Filters:
+    <div>
+        <label>
+            object.test
+            <input type="text" [(ngModel)]="objectsFilter.test">
+        </label>
+    </div>
+    <div>
+        <label>
+            object.num
+            <input type="text" [(ngModel)]="objectsFilter.num">
+        </label>
+    </div>
+    <div>
+        <label>
+            object.nested.val
+            <input type="text" [(ngModel)]="objectsFilter.nested.val">
+        </label>
+    </div>
+    <div *ngFor="let item of objects | filterBy: objectsFilter">{{ item | json }}</div>
+</div>
+
+<div>
+    <h4>Strings</h4>
+    <h5>Before filtering</h5>
+    {{ strings | json }}
+    <h5>After filtering</h5>
+    <label>
+        Filter
+        <input type="text" [(ngModel)]="stringsFilter">
+    </label>
+    <div *ngFor="let string of strings | filterBy: stringsFilter">{{ string }}</div>
+</div>
+
+<div>
+    <h4>Numbers</h4>
+    <h5>Before filtering</h5>
+    {{ numbers | json }}
+    <h5>After filtering</h5>
+    <label>
+        Filter
+        <input type="text" [(ngModel)]="numbersFilter">
+    </label>
+    <div *ngFor="let number of numbers | filterBy: numbersFilter">{{ number }}</div>
+</div>
