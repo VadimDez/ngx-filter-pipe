@@ -6,57 +6,109 @@
     </header>
     <main class="mdl-layout__content">
         <div class="page-content">
-            <div>
-                <h4>Objects</h4>
-                <h5>Before filtering</h5>
-                {{ objects | json }}
-                <h5>After filtering</h5>
-                Filters:
-                <div>
-                    <label>
-                        object.test
-                        <input type="text" [(ngModel)]="objectsFilter.test">
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        object.num
-                        <input type="text" [(ngModel)]="objectsFilter.num">
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        object.nested.val
-                        <input type="text" [(ngModel)]="objectsFilter.nested.val">
-                    </label>
-                </div>
-                <div *ngFor="let item of objects | filterBy: objectsFilter">{{ item | json }}</div>
-            </div>
+            <div class="mdl-grid">
 
-            <div>
-                <h4>Strings</h4>
-                <h5>Before filtering</h5>
-                {{ strings | json }}
-                <h5>After filtering</h5>
-                <label>
-                    Filter
-                    <input type="text" [(ngModel)]="stringsFilter">
-                </label>
-                <div *ngFor="let string of strings | filterBy: stringsFilter">{{ string }}</div>
-            </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset">
+                    <h4>Objects</h4>
+                    <h5>Before filtering</h5>
+                    {{ objects | json }}
+                    <h5>After filtering</h5>
+                    Filters:
+                    <div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="object.test" [(ngModel)]="objectsFilter.test">
+                            <label class="mdl-textfield__label" for="object.test">object.test</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="object.num" [(ngModel)]="objectsFilter.num">
+                            <label class="mdl-textfield__label" for="object.num">object.num</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="object.nested.val" [(ngModel)]="objectsFilter.nested.val">
+                            <label class="mdl-textfield__label" for="object.num">object.nested.val</label>
+                        </div>
+                    </div>
 
-            <div>
-                <h4>Numbers</h4>
-                <h5>Before filtering</h5>
-                {{ numbers | json }}
-                <h5>After filtering</h5>
-                <label>
-                    Filter
-                    <input type="text" [(ngModel)]="numbersFilter">
-                </label>
-                <div *ngFor="let number of numbers | filterBy: numbersFilter">{{ number }}</div>
-            </div>
+                    <div>
+                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                            <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Object</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr mdl *ngFor="let item of objects | filterBy: objectsFilter">
+                                <td class="mdl-data-table__cell--non-numeric">{{ item | json }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset">
+                    <h4>Strings</h4>
+                    <h5>Before filtering</h5>
+                    {{ strings | json }}
+                    <h5>After filtering</h5>
+
+                    <div>
+                        Filters:
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="filter-string" [(ngModel)]="stringsFilter">
+                        <label class="mdl-textfield__label" for="filter-string">Filter by string</label>
+                    </div>
+
+                    <div>
+                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                            <thead>
+                            <tr>
+                                <th>String</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr mdl *ngFor="let string of strings | filterBy: stringsFilter">
+                                <td>{{ string }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset">
+                    <h4>Numbers</h4>
+                    <h5>Before filtering</h5>
+                    {{ numbers | json }}
+                    <h5>After filtering</h5>
+
+                    <div>
+                        Filters:
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" id="filter-number" [(ngModel)]="numbersFilter">
+                        <label class="mdl-textfield__label" for="filter-number">Filter by number</label>
+                    </div>
+                    <div>
+                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                            <thead>
+                            <tr>
+                                <th>Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr mdl *ngFor="let number of numbers | filterBy: numbersFilter">
+                                    <td>{{ number }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </main>
 
