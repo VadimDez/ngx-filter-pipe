@@ -12,7 +12,8 @@ module.exports = function(defaults) {
       'reflect-metadata/**/*.+(js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      'material-design-lite/material.min.+(js|css)'
+      'material-design-lite/material.min.js',
+      'material-design-lite/dist/material.teal-indigo.min.css'
     ]
   });
 };
