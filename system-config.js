@@ -31,6 +31,7 @@ barrels.forEach(function (barrelName) {
 // Apply the CLI SystemJS configuration.
 System.config({
     map: {
+        'app': './',
         '@angular': './vendor/@angular',
         'rxjs': './vendor/rxjs',
         'main': 'main.js'
