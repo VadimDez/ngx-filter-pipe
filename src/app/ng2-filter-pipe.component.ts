@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Ng2FilterPipe } from './shared/ng2-filter.pipe';
+import { MDL } from './shared/mdl';
 
 @Component({
   moduleId: module.id,
   selector: 'ng2-filter-pipe-app',
   templateUrl: 'ng2-filter-pipe.component.html',
   styleUrls: ['ng2-filter-pipe.component.css'],
+  directives: [MDL],
   pipes: [Ng2FilterPipe]
 })
 
