@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "angular-cli": "^1.0.0-beta.5",
+    "angular-cli-ghpages": "^0.1.7",
     "codelyzer": "0.0.19",
     "ember-cli-inject-live-reload": "^1.4.0",
     "jasmine-core": "^2.4.1",
