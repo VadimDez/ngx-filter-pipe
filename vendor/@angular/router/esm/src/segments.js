@@ -1,5 +1,6 @@
-import { StringMapWrapper, ListWrapper } from './facade/collection';
-import { isBlank, isPresent, stringify } from './facade/lang';
+import { DEFAULT_OUTLET_NAME } from './constants';
+import { ListWrapper, StringMapWrapper } from './facade/collection';
+import { NumberWrapper, isBlank, isPresent, stringify } from './facade/lang';
 export class Tree {
     constructor(root) {
         this._root = root;
@@ -34,9 +35,6 @@ export function rootNode(tree) {
     return tree._root;
 }
 function _findNode(expected, c) {
-    // TODO: vsavkin remove it once recognize is fixed
-    if (expected instanceof RouteSegment && equalSegments(expected, c.value))
-        return c;
     if (expected === c.value)
         return c;
     for (let cc of c.children) {
@@ -48,8 +46,7 @@ function _findNode(expected, c) {
 }
 function _findPath(expected, c, collected) {
     collected.push(c);
-    // TODO: vsavkin remove it once recognize is fixed
-    if (_equalValues(expected, c.value))
+    if (expected === c.value)
         return collected;
     for (let cc of c.children) {
         let r = _findPath(expected, cc, ListWrapper.clone(collected));
@@ -59,23 +56,16 @@ function _findPath(expected, c, collected) {
     return null;
 }
 function _contains(tree, subtree) {
-    if (!_equalValues(tree.value, subtree.value))
+    if (tree.value !== subtree.value)
         return false;
     for (let subtreeNode of subtree.children) {
-        let s = tree.children.filter(child => _equalValues(child.value, subtreeNode.value));
+        let s = tree.children.filter(child => child.value === subtreeNode.value);
         if (s.length === 0)
             return false;
         if (!_contains(s[0], subtreeNode))
             return false;
     }
     return true;
-}
-function _equalValues(a, b) {
-    if (a instanceof RouteSegment)
-        return equalSegments(a, b);
-    if (a instanceof UrlSegment)
-        return equalUrlSegments(a, b);
-    return a === b;
 }
 export class TreeNode {
     constructor(value, children) {
@@ -90,13 +80,13 @@ export class UrlSegment {
         this.outlet = outlet;
     }
     toString() {
-        let outletPrefix = isBlank(this.outlet) ? "" : `${this.outlet}:`;
+        let outletPrefix = isBlank(this.outlet) ? '' : `${this.outlet}:`;
         return `${outletPrefix}${this.segment}${_serializeParams(this.parameters)}`;
     }
 }
 function _serializeParams(params) {
-    let res = "";
-    StringMapWrapper.forEach(params, (v, k) => res += `;${k}=${v}`);
+    let res = '';
+    StringMapWrapper.forEach(params, (v /** TODO #9100 */, k /** TODO #9100 */) => res += `;${k}=${v}`);
     return res;
 }
 export class RouteSegment {
@@ -110,44 +100,36 @@ export class RouteSegment {
     getParam(param) {
         return isPresent(this.parameters) ? this.parameters[param] : null;
     }
+    getParamAsNumber(param) {
+        return isPresent(this.parameters) ? NumberWrapper.parseFloat(this.parameters[param]) : null;
+    }
     get type() { return this._type; }
-    get stringifiedUrlSegments() { return this.urlSegments.map(s => s.toString()).join("/"); }
+    get stringifiedUrlSegments() { return this.urlSegments.map(s => s.toString()).join('/'); }
+}
+export function createEmptyRouteTree(type) {
+    let root = new RouteSegment([new UrlSegment('', {}, null)], {}, DEFAULT_OUTLET_NAME, type, null);
+    return new RouteTree(new TreeNode(root, []));
 }
 export function serializeRouteSegmentTree(tree) {
     return _serializeRouteSegmentTree(tree._root);
 }
 function _serializeRouteSegmentTree(node) {
     let v = node.value;
-    let children = node.children.map(c => _serializeRouteSegmentTree(c)).join(", ");
+    let children = node.children.map(c => _serializeRouteSegmentTree(c)).join(', ');
     return `${v.outlet}:${v.stringifiedUrlSegments}(${stringify(v.type)}) [${children}]`;
 }
-export function equalSegments(a, b) {
-    if (isBlank(a) && !isBlank(b))
-        return false;
-    if (!isBlank(a) && isBlank(b))
-        return false;
-    if (a._type !== b._type)
-        return false;
-    if (a.outlet != b.outlet)
-        return false;
-    return StringMapWrapper.equals(a.parameters, b.parameters);
-}
 export function equalUrlSegments(a, b) {
-    if (isBlank(a) && !isBlank(b))
+    if (a.length !== b.length)
         return false;
-    if (!isBlank(a) && isBlank(b))
-        return false;
-    if (a.segment != b.segment)
-        return false;
-    if (a.outlet != b.outlet)
-        return false;
-    if (isBlank(a.parameters)) {
-        console.log("a", a);
+    for (let i = 0; i < a.length; ++i) {
+        if (a[i].segment != b[i].segment)
+            return false;
+        if (a[i].outlet != b[i].outlet)
+            return false;
+        if (!StringMapWrapper.equals(a[i].parameters, b[i].parameters))
+            return false;
     }
-    if (isBlank(b.parameters)) {
-        console.log("b", b);
-    }
-    return StringMapWrapper.equals(a.parameters, b.parameters);
+    return true;
 }
 export function routeSegmentComponentFactory(a) {
     return a._componentFactory;

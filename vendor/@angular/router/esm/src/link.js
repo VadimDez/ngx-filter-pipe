@@ -1,8 +1,7 @@
-import { TreeNode, UrlSegment, rootNode, UrlTree } from './segments';
-import { isBlank, isPresent, isString, isStringMap } from './facade/lang';
+import { ListWrapper, StringMapWrapper } from './facade/collection';
 import { BaseException } from './facade/exceptions';
-import { ListWrapper } from './facade/collection';
-// TODO: vsavkin: should reuse segments
+import { isBlank, isPresent, isString, isStringMap } from './facade/lang';
+import { TreeNode, UrlSegment, UrlTree, rootNode } from './segments';
 export function link(segment, routeTree, urlTree, commands) {
     if (commands.length === 0)
         return urlTree;
@@ -12,12 +11,14 @@ export function link(segment, routeTree, urlTree, commands) {
     }
     let startingNode = _findStartingNode(normalizedCommands, urlTree, segment, routeTree);
     let updated = normalizedCommands.commands.length > 0 ?
-        _updateMany(ListWrapper.clone(startingNode.children), normalizedCommands.commands) : [];
+        _updateMany(ListWrapper.clone(startingNode.children), normalizedCommands.commands) :
+        [];
     let newRoot = _constructNewTree(rootNode(urlTree), startingNode, updated);
     return new UrlTree(newRoot);
 }
 function _navigateToRoot(normalizedChange) {
-    return normalizedChange.isAbsolute && normalizedChange.commands.length === 1 && normalizedChange.commands[0] == "/";
+    return normalizedChange.isAbsolute && normalizedChange.commands.length === 1 &&
+        normalizedChange.commands[0] == '/';
 }
 class _NormalizedNavigationCommands {
     constructor(isAbsolute, numberOfDoubleDots, commands) {
@@ -27,9 +28,7 @@ class _NormalizedNavigationCommands {
     }
 }
 function _normalizeCommands(commands) {
-    ;
-    '';
-    if (isString(commands[0]) && commands.length === 1 && commands[0] == "/") {
+    if (isString(commands[0]) && commands.length === 1 && commands[0] == '/') {
         return new _NormalizedNavigationCommands(true, 0, commands);
     }
     let numberOfDoubleDots = 0;
@@ -46,12 +45,12 @@ function _normalizeCommands(commands) {
             let cc = parts[j];
             // first exp is treated in a special way
             if (i == 0) {
-                if (j == 0 && cc == ".") {
+                if (j == 0 && cc == '.') {
                 }
-                else if (j == 0 && cc == "") {
+                else if (j == 0 && cc == '') {
                     isAbsolute = true;
                 }
-                else if (cc == "..") {
+                else if (cc == '..') {
                     numberOfDoubleDots++;
                 }
                 else if (cc != '') {
@@ -75,7 +74,7 @@ function _findUrlSegment(segment, routeTree, urlTree, numberOfDoubleDots) {
     let urlSegment = ListWrapper.last(s.urlSegments);
     let path = urlTree.pathFromRoot(urlSegment);
     if (path.length <= numberOfDoubleDots) {
-        throw new BaseException("Invalid number of '../'");
+        throw new BaseException('Invalid number of \'../\'');
     }
     return path[path.length - 1 - numberOfDoubleDots];
 }
@@ -118,24 +117,38 @@ function _update(node, commands) {
         return new TreeNode(urlSegment, children);
     }
     else if (isBlank(node) && isStringMap(next)) {
-        let urlSegment = new UrlSegment(segment, next, outlet);
+        let urlSegment = new UrlSegment(segment, _stringify(next), outlet);
         return _recurse(urlSegment, node, rest.slice(1));
     }
     else if (outlet != node.value.outlet) {
         return node;
     }
     else if (isStringMap(segment)) {
-        let newSegment = new UrlSegment(node.value.segment, segment, node.value.outlet);
+        let newSegment = new UrlSegment(node.value.segment, _stringify(segment), node.value.outlet);
         return _recurse(newSegment, node, rest);
     }
+    else if (isStringMap(next) && _compare(segment, _stringify(next), node.value)) {
+        return _recurse(node.value, node, rest.slice(1));
+    }
     else if (isStringMap(next)) {
-        let urlSegment = new UrlSegment(segment, next, outlet);
+        let urlSegment = new UrlSegment(segment, _stringify(next), outlet);
         return _recurse(urlSegment, node, rest.slice(1));
+    }
+    else if (_compare(segment, {}, node.value)) {
+        return _recurse(node.value, node, rest);
     }
     else {
         let urlSegment = new UrlSegment(segment, {}, outlet);
         return _recurse(urlSegment, node, rest);
     }
+}
+function _stringify(params) {
+    let res = {};
+    StringMapWrapper.forEach(params, (v /** TODO #9100 */, k /** TODO #9100 */) => res[k] = v.toString());
+    return res;
+}
+function _compare(path, params, segment) {
+    return path == segment.segment && StringMapWrapper.equals(params, segment.parameters);
 }
 function _recurse(urlSegment, node, rest) {
     if (rest.length === 0) {
@@ -158,13 +171,13 @@ function _updateMany(nodes, commands) {
 function _segment(commands) {
     if (!isString(commands[0]))
         return commands[0];
-    let parts = commands[0].toString().split(":");
+    let parts = commands[0].toString().split(':');
     return parts.length > 1 ? parts[1] : commands[0];
 }
 function _outlet(commands) {
     if (!isString(commands[0]))
         return null;
-    let parts = commands[0].toString().split(":");
+    let parts = commands[0].toString().split(':');
     return parts.length > 1 ? parts[0] : null;
 }
 //# sourceMappingURL=link.js.map

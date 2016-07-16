@@ -1,17 +1,12 @@
-import { provide, ReflectiveInjector } from '@angular/core';
-import { isBlank, isPresent } from './facade/lang';
-import { ListWrapper } from './facade/collection';
-import { EventEmitter, PromiseWrapper, ObservableWrapper } from './facade/async';
-import { StringMapWrapper } from './facade/collection';
-import { BaseException } from '@angular/core';
-import { recognize } from './recognize';
-import { link } from './link';
-import { equalSegments, routeSegmentComponentFactory, RouteSegment, RouteTree, rootNode, TreeNode, UrlSegment } from './segments';
-import { hasLifecycleHook } from './lifecycle_reflector';
+import { BaseException, ReflectiveInjector } from '@angular/core';
 import { DEFAULT_OUTLET_NAME } from './constants';
-/**
- * @internal
- */
+import { EventEmitter, ObservableWrapper, PromiseWrapper } from './facade/async';
+import { ListWrapper, StringMapWrapper } from './facade/collection';
+import { isBlank, isPresent } from './facade/lang';
+import { hasLifecycleHook } from './lifecycle_reflector';
+import { link } from './link';
+import { recognize } from './recognize';
+import { RouteSegment, createEmptyRouteTree, rootNode, routeSegmentComponentFactory } from './segments';
 export class RouterOutletMap {
     constructor() {
         /** @internal */
@@ -37,7 +32,7 @@ export class Router {
         this._routerOutletMap = _routerOutletMap;
         this._location = _location;
         this._changes = new EventEmitter();
-        this._prevTree = this._createInitialTree();
+        this._routeTree = createEmptyRouteTree(this._rootComponentType);
         this._setUpLocationChangeListener();
         this.navigateByUrl(this._location.path());
     }
@@ -48,7 +43,7 @@ export class Router {
     /**
      * Returns the current route tree.
      */
-    get routeTree() { return this._prevTree; }
+    get routeTree() { return this._routeTree; }
     /**
      * An observable or url changes from the router.
      */
@@ -114,58 +109,61 @@ export class Router {
      * ```
      */
     createUrlTree(commands, segment) {
-        let s = isPresent(segment) ? segment : this._prevTree.root;
-        return link(s, this._prevTree, this.urlTree, commands);
+        let s = isPresent(segment) ? segment : this._routeTree.root;
+        return link(s, this._routeTree, this.urlTree, commands);
     }
     /**
      * Serializes a {@link UrlTree} into a string.
      */
     serializeUrl(url) { return this._urlSerializer.serialize(url); }
-    _createInitialTree() {
-        let root = new RouteSegment([new UrlSegment("", {}, null)], {}, DEFAULT_OUTLET_NAME, this._rootComponentType, null);
-        return new RouteTree(new TreeNode(root, []));
-    }
     _setUpLocationChangeListener() {
-        this._locationSubscription = this._location.subscribe((change) => { this._navigate(this._urlSerializer.parse(change['url'])); });
+        this._locationSubscription = this._location.subscribe((change) => { this._navigate(this._urlSerializer.parse(change['url']), change['pop']); });
     }
-    _navigate(url) {
+    _navigate(url, preventPushState) {
         this._urlTree = url;
-        return recognize(this._componentResolver, this._rootComponentType, url)
+        return recognize(this._componentResolver, this._rootComponentType, url, this._routeTree)
             .then(currTree => {
-            return new _LoadSegments(currTree, this._prevTree)
-                .load(this._routerOutletMap, this._rootComponent)
+            return new _ActivateSegments(currTree, this._routeTree)
+                .activate(this._routerOutletMap, this._rootComponent)
                 .then(updated => {
                 if (updated) {
-                    this._prevTree = currTree;
-                    this._location.go(this._urlSerializer.serialize(this._urlTree));
+                    this._routeTree = currTree;
+                    if (isBlank(preventPushState) || !preventPushState) {
+                        let path = this._urlSerializer.serialize(this._urlTree);
+                        if (this._location.isCurrentPathEqualTo(path)) {
+                            this._location.replaceState(path);
+                        }
+                        else {
+                            this._location.go(path);
+                        }
+                    }
                     this._changes.emit(null);
                 }
             });
         });
     }
 }
-class _LoadSegments {
+class _ActivateSegments {
     constructor(currTree, prevTree) {
         this.currTree = currTree;
         this.prevTree = prevTree;
         this.deactivations = [];
         this.performMutation = true;
     }
-    load(parentOutletMap, rootComponent) {
+    activate(parentOutletMap, rootComponent) {
         let prevRoot = isPresent(this.prevTree) ? rootNode(this.prevTree) : null;
         let currRoot = rootNode(this.currTree);
-        return this.canDeactivate(currRoot, prevRoot, parentOutletMap, rootComponent)
-            .then(res => {
+        return this.canDeactivate(currRoot, prevRoot, parentOutletMap, rootComponent).then(res => {
             this.performMutation = true;
             if (res) {
-                this.loadChildSegments(currRoot, prevRoot, parentOutletMap, [rootComponent]);
+                this.activateChildSegments(currRoot, prevRoot, parentOutletMap, [rootComponent]);
             }
             return res;
         });
     }
     canDeactivate(currRoot, prevRoot, outletMap, rootComponent) {
         this.performMutation = false;
-        this.loadChildSegments(currRoot, prevRoot, outletMap, [rootComponent]);
+        this.activateChildSegments(currRoot, prevRoot, outletMap, [rootComponent]);
         let allPaths = PromiseWrapper.all(this.deactivations.map(r => this.checkCanDeactivatePath(r)));
         return allPaths.then((values) => values.filter(v => v).length === values.length);
     }
@@ -173,7 +171,7 @@ class _LoadSegments {
         let curr = PromiseWrapper.resolve(true);
         for (let p of ListWrapper.reversed(path)) {
             curr = curr.then(_ => {
-                if (hasLifecycleHook("routerCanDeactivate", p)) {
+                if (hasLifecycleHook('routerCanDeactivate', p)) {
                     return p.routerCanDeactivate(this.prevTree, this.currTree);
                 }
                 else {
@@ -183,39 +181,37 @@ class _LoadSegments {
         }
         return curr;
     }
-    loadChildSegments(currNode, prevNode, outletMap, components) {
-        let prevChildren = isPresent(prevNode) ?
-            prevNode.children.reduce((m, c) => {
-                m[c.value.outlet] = c;
-                return m;
-            }, {}) :
-            {};
+    activateChildSegments(currNode, prevNode, outletMap, components) {
+        let prevChildren = isPresent(prevNode) ? prevNode.children.reduce((m, c) => {
+            m[c.value.outlet] = c;
+            return m;
+        }, {}) : {};
         currNode.children.forEach(c => {
-            this.loadSegments(c, prevChildren[c.value.outlet], outletMap, components);
+            this.activateSegments(c, prevChildren[c.value.outlet], outletMap, components);
             StringMapWrapper.delete(prevChildren, c.value.outlet);
         });
-        StringMapWrapper.forEach(prevChildren, (v, k) => this.unloadOutlet(outletMap._outlets[k], components));
+        StringMapWrapper.forEach(prevChildren, (v /** TODO #9100 */, k /** TODO #9100 */) => this.deactivateOutlet(outletMap._outlets[k], components));
     }
-    loadSegments(currNode, prevNode, parentOutletMap, components) {
+    activateSegments(currNode, prevNode, parentOutletMap, components) {
         let curr = currNode.value;
         let prev = isPresent(prevNode) ? prevNode.value : null;
         let outlet = this.getOutlet(parentOutletMap, currNode.value);
-        if (equalSegments(curr, prev)) {
-            this.loadChildSegments(currNode, prevNode, outlet.outletMap, components.concat([outlet.loadedComponent]));
+        if (curr === prev) {
+            this.activateChildSegments(currNode, prevNode, outlet.outletMap, components.concat([outlet.component]));
         }
         else {
-            this.unloadOutlet(outlet, components);
+            this.deactivateOutlet(outlet, components);
             if (this.performMutation) {
                 let outletMap = new RouterOutletMap();
-                let loadedComponent = this.loadNewSegment(outletMap, curr, prev, outlet);
-                this.loadChildSegments(currNode, prevNode, outletMap, components.concat([loadedComponent]));
+                let component = this.activateNewSegments(outletMap, curr, prev, outlet);
+                this.activateChildSegments(currNode, prevNode, outletMap, components.concat([component]));
             }
         }
     }
-    loadNewSegment(outletMap, curr, prev, outlet) {
-        let resolved = ReflectiveInjector.resolve([provide(RouterOutletMap, { useValue: outletMap }), provide(RouteSegment, { useValue: curr })]);
-        let ref = outlet.load(routeSegmentComponentFactory(curr), resolved, outletMap);
-        if (hasLifecycleHook("routerOnActivate", ref.instance)) {
+    activateNewSegments(outletMap, curr, prev, outlet) {
+        let resolved = ReflectiveInjector.resolve([{ provide: RouterOutletMap, useValue: outletMap }, { provide: RouteSegment, useValue: curr }]);
+        let ref = outlet.activate(routeSegmentComponentFactory(curr), resolved, outletMap);
+        if (hasLifecycleHook('routerOnActivate', ref.instance)) {
             ref.instance.routerOnActivate(curr, prev, this.currTree, this.prevTree);
         }
         return ref.instance;
@@ -232,14 +228,14 @@ class _LoadSegments {
         }
         return outlet;
     }
-    unloadOutlet(outlet, components) {
-        if (isPresent(outlet) && outlet.isLoaded) {
-            StringMapWrapper.forEach(outlet.outletMap._outlets, (v, k) => this.unloadOutlet(v, components));
+    deactivateOutlet(outlet, components) {
+        if (isPresent(outlet) && outlet.isActivated) {
+            StringMapWrapper.forEach(outlet.outletMap._outlets, (v /** TODO #9100 */, k /** TODO #9100 */) => this.deactivateOutlet(v, components));
             if (this.performMutation) {
-                outlet.unload();
+                outlet.deactivate();
             }
             else {
-                this.deactivations.push(components.concat([outlet.loadedComponent]));
+                this.deactivations.push(components.concat([outlet.component]));
             }
         }
     }

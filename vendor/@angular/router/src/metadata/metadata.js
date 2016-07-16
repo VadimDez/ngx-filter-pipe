@@ -1,5 +1,5 @@
 "use strict";
-var lang_1 = require("../facade/lang");
+var lang_1 = require('../facade/lang');
 /**
  * Information about a route.
  *

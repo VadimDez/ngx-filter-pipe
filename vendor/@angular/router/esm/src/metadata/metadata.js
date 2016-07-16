@@ -1,4 +1,4 @@
-import { stringify } from "../facade/lang";
+import { stringify } from '../facade/lang';
 /**
  * Information about a route.
  *

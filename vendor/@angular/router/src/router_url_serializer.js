@@ -4,9 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var segments_1 = require('./segments');
 var core_1 = require('@angular/core');
 var lang_1 = require('./facade/lang');
+var segments_1 = require('./segments');
 /**
  * Defines a way to serialize/deserialize a url tree.
  */
@@ -38,7 +38,7 @@ function _serializeUrlTreeNode(node) {
 function _serializeUrlTreeNodes(nodes) {
     var main = nodes[0].value.toString();
     var auxNodes = nodes.slice(1);
-    var aux = auxNodes.length > 0 ? "(" + auxNodes.map(_serializeUrlTreeNode).join("//") + ")" : "";
+    var aux = auxNodes.length > 0 ? "(" + auxNodes.map(_serializeUrlTreeNode).join("//") + ")" : '';
     var children = _serializeChildren(nodes[0]);
     return "" + main + aux + children;
 }
@@ -47,7 +47,7 @@ function _serializeChildren(node) {
         return "/" + _serializeUrlTreeNodes(node.children);
     }
     else {
-        return "";
+        return '';
     }
 }
 var SEGMENT_RE = lang_1.RegExpWrapper.create('^[^\\/\\(\\)\\?;=&#]+');
@@ -93,8 +93,8 @@ var _UrlParser = (function () {
         }
         var path = matchUrlSegment(this._remaining);
         this.capture(path);
-        if (path.indexOf(":") > -1) {
-            var parts = path.split(":");
+        if (path.indexOf(':') > -1) {
+            var parts = path.split(':');
             outletName = parts[0];
             path = parts[1];
         }
@@ -139,7 +139,7 @@ var _UrlParser = (function () {
             return;
         }
         this.capture(key);
-        var value = "true";
+        var value = 'true';
         if (this.peekStartsWith('=')) {
             this.capture('=');
             var valueMatch = matchUrlSegment(this._remaining);
@@ -156,7 +156,7 @@ var _UrlParser = (function () {
             return;
         }
         this.capture(key);
-        var value = "true";
+        var value = 'true';
         if (this.peekStartsWith('=')) {
             this.capture('=');
             var valueMatch = matchUrlQueryParamValue(this._remaining);
@@ -171,7 +171,7 @@ var _UrlParser = (function () {
         var segments = [];
         this.capture('(');
         while (!this.peekStartsWith(')') && this._remaining.length > 0) {
-            segments = segments.concat(this.parseSegments("aux"));
+            segments = segments.concat(this.parseSegments('aux'));
             if (this.peekStartsWith('//')) {
                 this.capture('//');
             }

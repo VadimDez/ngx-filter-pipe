@@ -1,5 +1,5 @@
-import { RoutesMetadata } from "./metadata";
 import { makeDecorator } from '../core_private';
+import { RoutesMetadata } from './metadata';
 /**
  * Defines routes for a given component.
  *

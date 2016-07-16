@@ -1,37 +1,39 @@
-import { Directive, ViewContainerRef, Attribute, ReflectiveInjector } from '@angular/core';
-import { RouterOutletMap } from '../router';
+import { Attribute, Directive, ReflectiveInjector, ViewContainerRef } from '@angular/core';
 import { DEFAULT_OUTLET_NAME } from '../constants';
-import { isPresent, isBlank } from '../facade/lang';
+import { isBlank, isPresent } from '../facade/lang';
+import { RouterOutletMap } from '../router';
 export class RouterOutlet {
     constructor(parentOutletMap, _location, name) {
         this._location = _location;
         parentOutletMap.registerOutlet(isBlank(name) ? DEFAULT_OUTLET_NAME : name, this);
     }
-    unload() {
-        this._loaded.destroy();
-        this._loaded = null;
+    deactivate() {
+        this._activated.destroy();
+        this._activated = null;
     }
     /**
      * Returns the loaded component.
      */
-    get loadedComponent() { return isPresent(this._loaded) ? this._loaded.instance : null; }
+    get component() { return isPresent(this._activated) ? this._activated.instance : null; }
     /**
      * Returns true is the outlet is not empty.
      */
-    get isLoaded() { return isPresent(this._loaded); }
+    get isActivated() { return isPresent(this._activated); }
     /**
      * Called by the Router to instantiate a new component.
      */
-    load(factory, providers, outletMap) {
+    activate(factory, providers, outletMap) {
         this.outletMap = outletMap;
         let inj = ReflectiveInjector.fromResolvedProviders(providers, this._location.parentInjector);
-        this._loaded = this._location.createComponent(factory, this._location.length, inj, []);
-        return this._loaded;
+        this._activated = this._location.createComponent(factory, this._location.length, inj, []);
+        return this._activated;
     }
 }
+/** @nocollapse */
 RouterOutlet.decorators = [
     { type: Directive, args: [{ selector: 'router-outlet' },] },
 ];
+/** @nocollapse */
 RouterOutlet.ctorParameters = [
     { type: RouterOutletMap, },
     { type: ViewContainerRef, },

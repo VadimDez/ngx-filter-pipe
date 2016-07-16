@@ -1,9 +1,7 @@
 "use strict";
 var router_providers_common_1 = require('./router_providers_common');
-var platform_browser_1 = require('@angular/platform-browser');
-var common_1 = require('@angular/common');
 /**
- * A list of {@link Provider}s. To use the router, you must add this to your application.
+ * A list of providers. To use the router, you must add this to your application.
  *
  * ```
  * import {Component} from '@angular/core';
@@ -24,8 +22,6 @@ var common_1 = require('@angular/common');
  * bootstrap(AppCmp, [ROUTER_PROVIDERS]);
  * ```
  */
-exports.ROUTER_PROVIDERS = [
-    router_providers_common_1.ROUTER_PROVIDERS_COMMON,
-    /*@ts2dart_Provider*/ { provide: common_1.PlatformLocation, useClass: platform_browser_1.BrowserPlatformLocation },
-];
+// TODO: merge with router_providers_common.ts
+exports.ROUTER_PROVIDERS = [router_providers_common_1.ROUTER_PROVIDERS_COMMON];
 //# sourceMappingURL=router_providers.js.map

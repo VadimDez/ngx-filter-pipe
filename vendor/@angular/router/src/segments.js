@@ -4,6 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var constants_1 = require('./constants');
 var collection_1 = require('./facade/collection');
 var lang_1 = require('./facade/lang');
 var Tree = (function () {
@@ -53,9 +54,6 @@ function rootNode(tree) {
 }
 exports.rootNode = rootNode;
 function _findNode(expected, c) {
-    // TODO: vsavkin remove it once recognize is fixed
-    if (expected instanceof RouteSegment && equalSegments(expected, c.value))
-        return c;
     if (expected === c.value)
         return c;
     for (var _i = 0, _a = c.children; _i < _a.length; _i++) {
@@ -68,8 +66,7 @@ function _findNode(expected, c) {
 }
 function _findPath(expected, c, collected) {
     collected.push(c);
-    // TODO: vsavkin remove it once recognize is fixed
-    if (_equalValues(expected, c.value))
+    if (expected === c.value)
         return collected;
     for (var _i = 0, _a = c.children; _i < _a.length; _i++) {
         var cc = _a[_i];
@@ -80,10 +77,10 @@ function _findPath(expected, c, collected) {
     return null;
 }
 function _contains(tree, subtree) {
-    if (!_equalValues(tree.value, subtree.value))
+    if (tree.value !== subtree.value)
         return false;
     var _loop_1 = function(subtreeNode) {
-        var s = tree.children.filter(function (child) { return _equalValues(child.value, subtreeNode.value); });
+        var s = tree.children.filter(function (child) { return child.value === subtreeNode.value; });
         if (s.length === 0)
             return { value: false };
         if (!_contains(s[0], subtreeNode))
@@ -95,13 +92,6 @@ function _contains(tree, subtree) {
         if (typeof state_1 === "object") return state_1.value;
     }
     return true;
-}
-function _equalValues(a, b) {
-    if (a instanceof RouteSegment)
-        return equalSegments(a, b);
-    if (a instanceof UrlSegment)
-        return equalUrlSegments(a, b);
-    return a === b;
 }
 var TreeNode = (function () {
     function TreeNode(value, children) {
@@ -118,15 +108,15 @@ var UrlSegment = (function () {
         this.outlet = outlet;
     }
     UrlSegment.prototype.toString = function () {
-        var outletPrefix = lang_1.isBlank(this.outlet) ? "" : this.outlet + ":";
+        var outletPrefix = lang_1.isBlank(this.outlet) ? '' : this.outlet + ":";
         return "" + outletPrefix + this.segment + _serializeParams(this.parameters);
     };
     return UrlSegment;
 }());
 exports.UrlSegment = UrlSegment;
 function _serializeParams(params) {
-    var res = "";
-    collection_1.StringMapWrapper.forEach(params, function (v, k) { return res += ";" + k + "=" + v; });
+    var res = '';
+    collection_1.StringMapWrapper.forEach(params, function (v /** TODO #9100 */, k /** TODO #9100 */) { return res += ";" + k + "=" + v; });
     return res;
 }
 var RouteSegment = (function () {
@@ -140,56 +130,48 @@ var RouteSegment = (function () {
     RouteSegment.prototype.getParam = function (param) {
         return lang_1.isPresent(this.parameters) ? this.parameters[param] : null;
     };
+    RouteSegment.prototype.getParamAsNumber = function (param) {
+        return lang_1.isPresent(this.parameters) ? lang_1.NumberWrapper.parseFloat(this.parameters[param]) : null;
+    };
     Object.defineProperty(RouteSegment.prototype, "type", {
         get: function () { return this._type; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(RouteSegment.prototype, "stringifiedUrlSegments", {
-        get: function () { return this.urlSegments.map(function (s) { return s.toString(); }).join("/"); },
+        get: function () { return this.urlSegments.map(function (s) { return s.toString(); }).join('/'); },
         enumerable: true,
         configurable: true
     });
     return RouteSegment;
 }());
 exports.RouteSegment = RouteSegment;
+function createEmptyRouteTree(type) {
+    var root = new RouteSegment([new UrlSegment('', {}, null)], {}, constants_1.DEFAULT_OUTLET_NAME, type, null);
+    return new RouteTree(new TreeNode(root, []));
+}
+exports.createEmptyRouteTree = createEmptyRouteTree;
 function serializeRouteSegmentTree(tree) {
     return _serializeRouteSegmentTree(tree._root);
 }
 exports.serializeRouteSegmentTree = serializeRouteSegmentTree;
 function _serializeRouteSegmentTree(node) {
     var v = node.value;
-    var children = node.children.map(function (c) { return _serializeRouteSegmentTree(c); }).join(", ");
+    var children = node.children.map(function (c) { return _serializeRouteSegmentTree(c); }).join(', ');
     return v.outlet + ":" + v.stringifiedUrlSegments + "(" + lang_1.stringify(v.type) + ") [" + children + "]";
 }
-function equalSegments(a, b) {
-    if (lang_1.isBlank(a) && !lang_1.isBlank(b))
-        return false;
-    if (!lang_1.isBlank(a) && lang_1.isBlank(b))
-        return false;
-    if (a._type !== b._type)
-        return false;
-    if (a.outlet != b.outlet)
-        return false;
-    return collection_1.StringMapWrapper.equals(a.parameters, b.parameters);
-}
-exports.equalSegments = equalSegments;
 function equalUrlSegments(a, b) {
-    if (lang_1.isBlank(a) && !lang_1.isBlank(b))
+    if (a.length !== b.length)
         return false;
-    if (!lang_1.isBlank(a) && lang_1.isBlank(b))
-        return false;
-    if (a.segment != b.segment)
-        return false;
-    if (a.outlet != b.outlet)
-        return false;
-    if (lang_1.isBlank(a.parameters)) {
-        console.log("a", a);
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i].segment != b[i].segment)
+            return false;
+        if (a[i].outlet != b[i].outlet)
+            return false;
+        if (!collection_1.StringMapWrapper.equals(a[i].parameters, b[i].parameters))
+            return false;
     }
-    if (lang_1.isBlank(b.parameters)) {
-        console.log("b", b);
-    }
-    return collection_1.StringMapWrapper.equals(a.parameters, b.parameters);
+    return true;
 }
 exports.equalUrlSegments = equalUrlSegments;
 function routeSegmentComponentFactory(a) {
