@@ -56,5 +56,5 @@ export class AppComponent {
   stringFilter: string = '';
 }
 ```
-# License
-MIT
+### License
+[MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
