@@ -4,6 +4,8 @@
  
 Angular 2 pipeline for filtering arrays.
 
+##### [Demo Page](https://vadimdez.github.io/ng2-filter-pipe/)
+
 ### Install
 
 ```
