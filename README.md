@@ -28,7 +28,7 @@ and then add to `packages`
 ```js
 var packages = {
     ...
-    'ng2-filter-pipe': { main: 'dist/ng2-filter-pipe.component.min.js' }
+    'ng2-filter-pipe': { main: 'dist/ng2-filter-pipe.min.js' }
 }
 ````
 
