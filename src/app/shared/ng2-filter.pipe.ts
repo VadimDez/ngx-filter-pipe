@@ -12,8 +12,9 @@ import { Pipe, Injectable } from '@angular/core';
 export class Ng2FilterPipe {
 
   private filterByString(filter) {
+    filter = filter.toLowerCase();
     return value => {
-      return !filter || value.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+      return !filter || value.toLowerCase().indexOf(filter) !== -1;
     }
   }
 
