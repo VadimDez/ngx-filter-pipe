@@ -13,7 +13,7 @@ export class Ng2FilterPipe {
 
   private filterByString(filter) {
     return value => {
-      return !filter || value.indexOf(filter) !== -1;
+      return !filter || value.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
     }
   }
 
