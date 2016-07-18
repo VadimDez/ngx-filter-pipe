@@ -56,9 +56,12 @@
     "typings": "^1.3.1",
     "uglifyjs": "^2.4.10"
   },
+  "typings": "./ng2-filter.pipe.d.ts",
+  "main": "ng2-filter.pipe.min.js",
   "files": [
     "ng2-filter.pipe.min.js",
-    "ng2-filter.pipe.min.js.map"
+    "ng2-filter.pipe.min.js.map",
+    "ng2-filter.pipe.d.ts"
   ],
   "keywords": [
     "angular",
