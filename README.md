@@ -58,6 +58,15 @@ export class AppComponent {
   stringFilter: string = '';
 }
 ```
+
+### Test
+
+Run tests
+
+```
+ng test
+```
+
 ### License
 
 [MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
