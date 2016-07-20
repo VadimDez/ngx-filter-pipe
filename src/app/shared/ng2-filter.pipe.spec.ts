@@ -50,5 +50,25 @@ describe('Pipe: Ng2FilterPipe', () => {
       { value: 'c' },
       { value: 'abc' }
     ], { value: 'a' })).toEqual([{ value: 'a' }, { value: 'abc' }]);
-  })
+  });
+
+  it('filters array of objects with nested objects', () => {
+    expect(pipe.transform([
+      { value: 'a', nested: { number: 1 } },
+      { value: 'b', nested: { number: 2 } },
+      { value: 'c', nested: { number: 1 } },
+      { value: 'abc', nested: { number: 2 } }
+    ], { value: 'a', nested: { number: 2 } }))
+      .toEqual([{ value: 'abc', nested: { number: 2 } }]);
+  });
+
+  it('filters array of objects with nested objects (not every object has nested object)', () => {
+    expect(pipe.transform([
+      { value: 'a' },
+      { value: 'b', nested: { number: 1 } },
+      { value: 'c', nested: { number: 1 } },
+      { value: 'abc' }
+    ], { value: 'a', nested: { number: 1 } }))
+      .toEqual([]);
+  });
 });
