@@ -64,7 +64,7 @@ export class AppComponent {
 Run tests
 
 ```
-ng test
+npm test
 ```
 
 ### License

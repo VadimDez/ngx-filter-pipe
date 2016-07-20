@@ -8,7 +8,7 @@
     "start": "ng server",
     "postinstall": "typings install",
     "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test",
+    "test": "ng test --watch=false",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "minify": "uglifyjs ./dist/app/shared/ng2-filter.pipe.js --compress --mangle --output ./ng2-filter.pipe.min.js --source-map ./ng2-filter.pipe.min.js.map"
