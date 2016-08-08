@@ -1,4 +1,4 @@
-# Angular2 filter pipe [![npm version](https://badge.fury.io/js/ng2-filter-pipe.svg)](https://badge.fury.io/js/ng2-filter-pipe)
+# Angular2 filter pipe [![npm version](https://badge.fury.io/js/ng2-filter-pipe.svg)](https://badge.fury.io/js/ng2-filter-pipe) ![Dependencies](https://david-dm.org/vadimdez/ng2-filter-pipe.svg)
 
 > Filter arrays
  
