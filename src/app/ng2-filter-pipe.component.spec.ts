@@ -1,13 +1,10 @@
 import {
-  beforeEachProviders,
-  describe,
-  expect,
-  it,
+  addProviders,
   inject
 } from '@angular/core/testing';
 import { Ng2FilterPipeAppComponent } from '../app/ng2-filter-pipe.component';
 
-beforeEachProviders(() => [Ng2FilterPipeAppComponent]);
+beforeEach(() => addProviders([Ng2FilterPipeAppComponent]));
 
 describe('App: Ng2FilterPipe', () => {
   it('should create the app',

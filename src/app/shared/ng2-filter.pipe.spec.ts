@@ -1,10 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import {
-  beforeEach, beforeEachProviders,
-  describe, xdescribe,
-  expect, it, xit,
-  async, inject
+  beforeEachProviders,
+  xdescribe,
+  xit,
+  async,
+  inject
 } from '@angular/core/testing';
 import { Ng2FilterPipe } from './ng2-filter.pipe';
 
