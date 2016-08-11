@@ -14,25 +14,7 @@ npm install ng2-filter-pipe --save
 
 ### Usage
 
-In your `system.config.js`
-
-Append to `map`
-
-```js
-var map = {
-    ...
-    'ng2-filter-pipe': 'node_modules/ng2-filter-pipe'
-}
-```
-
-and then add to `packages`
-
-```js
-var packages = {
-    ...
-    'ng2-filter-pipe': { main: 'ng2-filter-pipe.min.js' }
-}
-````
+In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ng2-filter-pipe/blob/master/SYSTEMJS.md).
 
 Import pipe and use it in your component
 
