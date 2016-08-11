@@ -1,12 +1,5 @@
 /* tslint:disable:no-unused-variable */
 
-import {
-  beforeEachProviders,
-  xdescribe,
-  xit,
-  async,
-  inject
-} from '@angular/core/testing';
 import { Ng2FilterPipe } from './ng2-filter.pipe';
 
 describe('Pipe: Ng2FilterPipe', () => {
