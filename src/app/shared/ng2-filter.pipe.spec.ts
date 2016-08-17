@@ -65,4 +65,13 @@ describe('Pipe: Ng2FilterPipe', () => {
     ], { value: 'a', nested: { number: 1 } }))
       .toEqual([]);
   });
+
+  it('filters array of objects with empty array', () => {
+    const objects = [
+      {
+        value: 'a'
+      }
+    ];
+    expect(pipe.transform(objects, [])).toEqual(objects);
+  })
 });
