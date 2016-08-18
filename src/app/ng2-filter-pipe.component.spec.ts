@@ -1,10 +1,15 @@
 import {
-  addProviders,
-  inject
+  inject,
+  TestBed
 } from '@angular/core/testing';
 import { Ng2FilterPipeAppComponent } from '../app/ng2-filter-pipe.component';
 
-beforeEach(() => addProviders([Ng2FilterPipeAppComponent]));
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    providers: [Ng2FilterPipeAppComponent]
+  });
+});
+
 
 describe('App: Ng2FilterPipe', () => {
   it('should create the app',
