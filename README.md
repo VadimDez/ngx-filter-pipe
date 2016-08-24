@@ -30,6 +30,9 @@ import { Ng2FilterPipe } from 'ng2-filter-pipe';
         <input type="text" [(ngModel)]="stringFilter">
         <ul>
           <li *ngFor="let item of array | filterBy: stringFilter"></li>
+          
+          <!-- in case you want to show empty message -->
+          <li *ngIf="(array | filterBy: stringFilter).length === 0">No matching elements</li>
         </ul>
     </div>  
   `
