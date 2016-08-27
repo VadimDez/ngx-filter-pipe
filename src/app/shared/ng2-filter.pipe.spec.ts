@@ -83,7 +83,6 @@ describe('Pipe: Ng2FilterPipe', () => {
       }
     ];
 
-    expect(pipe.transform(objects, { $or: [{ valueA: 1 }, { valueB: 2 }] }))
-      .toEqual(objects);
+    expect(pipe.transform(objects, { $or: [{ valueA: 1 }, { valueB: 2 }] })).toEqual(objects);
   });
 });
