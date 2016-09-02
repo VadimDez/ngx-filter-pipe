@@ -3,6 +3,15 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  // angular testing umd bundles
+  '@angular/core/testing': 'vendor/@angular/core/bundles/core-testing.umd.js',
+  '@angular/common/testing': 'vendor/@angular/common/bundles/common-testing.umd.js',
+  '@angular/compiler/testing': 'vendor/@angular/compiler/bundles/compiler-testing.umd.js',
+  '@angular/platform-browser/testing': 'vendor/@angular/platform-browser/bundles/platform-browser-testing.umd.js',
+  '@angular/platform-browser-dynamic/testing': 'vendor/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
+  '@angular/http/testing': 'vendor/@angular/http/bundles/http-testing.umd.js',
+  '@angular/router/testing': 'vendor/@angular/router/bundles/router-testing.umd.js',
+  '@angular/forms/testing': 'vendor/@angular/forms/bundles/forms-testing.umd.js',
 };
 
 /** User packages configuration. */
@@ -15,14 +24,7 @@ const packages: any = {
  **********************************************************************************************/
 const barrels: string[] = [
   // Angular specific barrels.
-  '@angular/core',
-  '@angular/common',
-  '@angular/compiler',
-  '@angular/http',
-  '@angular/router',
-  '@angular/platform-browser',
-  '@angular/platform-browser-dynamic',
-  '@angular/forms',
+
 
   // Thirdparty barrels.
   'rxjs',
@@ -34,6 +36,19 @@ const barrels: string[] = [
 ];
 
 const cliSystemConfigPackages: any = {};
+[
+  'core',
+  'common',
+  'compiler',
+  'http',
+  'router',
+  'platform-browser',
+  'platform-browser-dynamic',
+  'forms'
+].forEach((barrelName: string) => {
+  cliSystemConfigPackages[`@angular/${ barrelName }`] = { main: `bundles/${ barrelName }.umd.js` };
+});
+
 barrels.forEach((barrelName: string) => {
   cliSystemConfigPackages[barrelName] = { main: 'index' };
 });

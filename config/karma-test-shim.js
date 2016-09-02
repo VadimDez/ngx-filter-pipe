@@ -13,7 +13,7 @@ function isJsFile(path) {
 }
 
 function isSpecFile(path) {
-  return path.slice(-8) == '.spec.js';
+  return /\.spec\.js$/.test(path);
 }
 
 function isAppFile(path) {
@@ -35,11 +35,12 @@ System.import('system-config.js').then(function() {
     System.import('@angular/core/testing'),
     System.import('@angular/platform-browser-dynamic/testing')
   ]).then(function (providers) {
-    var testing = providers[0];
-    var testingBrowser = providers[1];
-
-    testing.setBaseTestProviders(testingBrowser.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
-      testingBrowser.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+    var coreTesting = providers[0];
+    var browserTesting = providers[1];
+    coreTesting.TestBed.initTestEnvironment(
+      browserTesting.BrowserDynamicTestingModule,
+      browserTesting.platformBrowserDynamicTesting()
+    );
   });
 }).then(function() {
   // Finally, load all spec files.
