@@ -22,19 +22,28 @@
                             Filters:
                             <div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="object.test" [(ngModel)]="objectsFilter.test">
+                                    <input class="mdl-textfield__input" type="text" id="object.test"
+                                           [(ngModel)]="objectsFilter.test"
+                                           [value]="objectsFilter.test"
+                                    >
                                     <label class="mdl-textfield__label" for="object.test">object.test</label>
                                 </div>
                             </div>
                             <div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="object.num" [(ngModel)]="objectsFilter.num">
+                                    <input class="mdl-textfield__input" type="text" id="object.num"
+                                           [(ngModel)]="objectsFilter.num"
+                                           [value]="objectsFilter.num"
+                                    >
                                     <label class="mdl-textfield__label" for="object.num">object.num</label>
                                 </div>
                             </div>
                             <div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="object.nested.val" [(ngModel)]="objectsFilter.nested.val">
+                                    <input class="mdl-textfield__input" type="text" id="object.nested.val"
+                                           [(ngModel)]="objectsFilter.nested.val"
+                                           [value]="objectsFilter.nested.val"
+                                    >
                                     <label class="mdl-textfield__label" for="object.num">object.nested.val</label>
                                 </div>
                             </div>
@@ -47,7 +56,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr mdl *ngFor="let item of objects | filterBy: objectsFilter">
+                                    <tr *ngFor="let item of objects | filterBy: objectsFilter">
                                         <td class="mdl-data-table__cell--non-numeric">{{ item | json }}</td>
                                     </tr>
                                     </tbody>
@@ -74,7 +83,10 @@
                                 Filters:
                             </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="filter-string" [(ngModel)]="stringsFilter">
+                                <input class="mdl-textfield__input" type="text" id="filter-string"
+                                       [(ngModel)]="stringsFilter"
+                                       [value]="stringsFilter"
+                                >
                                 <label class="mdl-textfield__label" for="filter-string">Filter by string</label>
                             </div>
 
@@ -86,7 +98,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr mdl *ngFor="let string of strings | filterBy: stringsFilter">
+                                    <tr *ngFor="let string of strings | filterBy: stringsFilter">
                                         <td>{{ string }}</td>
                                     </tr>
                                     </tbody>
@@ -113,7 +125,10 @@
                                 Filters:
                             </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="filter-number" [(ngModel)]="numbersFilter">
+                                <input class="mdl-textfield__input" type="number" id="filter-number"
+                                       [(ngModel)]="numbersFilter"
+                                       [value]="numbersFilter"
+                                >
                                 <label class="mdl-textfield__label" for="filter-number">Filter by number</label>
                             </div>
                             <div>
@@ -124,7 +139,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr mdl *ngFor="let number of numbers | filterBy: numbersFilter">
+                                    <tr *ngFor="let number of numbers | filterBy: numbersFilter">
                                         <td>{{ number }}</td>
                                     </tr>
                                     </tbody>

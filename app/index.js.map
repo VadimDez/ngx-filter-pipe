@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,eAAe,CAAC,EAAA;AAC9B,iBAAc,6BAA6B,CAAC,EAAA","sourcesContent":["export * from './environment';\nexport * from './ng2-filter-pipe.component';\n"]}
