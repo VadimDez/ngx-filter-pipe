@@ -15,13 +15,13 @@ Angular 2 pipeline for filtering arrays.
 
 ##### [Demo Page](https://vadimdez.github.io/ng2-filter-pipe/)
 
-### Install
+## Install
 
 ```
 npm install ng2-filter-pipe --save
 ```
 
-### Usage
+## Usage
 
 In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ng2-filter-pipe/blob/master/SYSTEMJS.md).
 
@@ -53,7 +53,7 @@ export class AppComponent {
 }
 ```
 
-### Test
+## Test
 
 Run tests
 
@@ -61,6 +61,6 @@ Run tests
 npm test
 ```
 
-### License
+## License
 
 [MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
