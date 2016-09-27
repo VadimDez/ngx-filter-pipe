@@ -1,4 +1,4 @@
-<h1 align="center">Angular2 filter pipe</h1>
+<h1 align="center">Angular2 Filter Pipe</h1>
 
 <p align="center">
     <a href="https://badge.fury.io/js/ng2-filter-pipe">
