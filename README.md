@@ -1,4 +1,13 @@
-# Angular2 filter pipe [![npm version](https://badge.fury.io/js/ng2-filter-pipe.svg)](https://badge.fury.io/js/ng2-filter-pipe) ![Dependencies](https://david-dm.org/vadimdez/ng2-filter-pipe.svg)
+<h1 align="center">Angular2 Filter Pipe</h1>
+
+<p align="center">
+    <a href="https://badge.fury.io/js/ng2-filter-pipe">
+      <img src="https://badge.fury.io/js/ng2-filter-pipe.svg" alt="npm version" height="18">
+    </a>
+  <a href="https://david-dm.org/vadimdez/ng2-filter-pipe" title="dependencies status">
+    <img src="https://david-dm.org/vadimdez/ng2-filter-pipe.svg"/>
+  </a>
+</p>
 
 > Filter arrays
  
@@ -6,13 +15,13 @@ Angular 2 pipeline for filtering arrays.
 
 ##### [Demo Page](https://vadimdez.github.io/ng2-filter-pipe/)
 
-### Install
+## Install
 
 ```
 npm install ng2-filter-pipe --save
 ```
 
-### Usage
+## Usage
 
 In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ng2-filter-pipe/blob/master/SYSTEMJS.md).
 
@@ -44,7 +53,7 @@ export class AppComponent {
 }
 ```
 
-### Test
+## Test
 
 Run tests
 
@@ -52,6 +61,6 @@ Run tests
 npm test
 ```
 
-### License
+## License
 
 [MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
