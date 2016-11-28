@@ -64,12 +64,10 @@
     "uglifyjs": "^2.4.10",
     "zone.js": "^0.6.26"
   },
-  "typings": "./ng2-filter.pipe.d.ts",
-  "main": "ng2-filter.pipe.min.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "files": [
-    "ng2-filter.pipe.min.js",
-    "ng2-filter.pipe.min.js.map",
-    "ng2-filter.pipe.d.ts"
+    "dist"
   ],
   "keywords": [
     "angular",
