@@ -25,15 +25,30 @@ npm install ng2-filter-pipe --save
 
 In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ng2-filter-pipe/blob/master/SYSTEMJS.md).
 
-Import pipe and use it in your component
+Import `Ng2FilterPipeModule` to your module
 
-```js
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule  } from '@angular/platform-browser';
+import { AppComponent } from './app';
+ 
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+ 
+@NgModule({
+  imports: [BrowserModule, Ng2FilterPipeModule],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+```
+
+And use pipe in your component
+```ts
 import { Component } from '@angular/core';
-import { Ng2FilterPipe } from 'ng2-filter-pipe';
-
+ 
 @Component({
   selector: 'example-app',
-  pipes: [Ng2FilterPipe],
   template: `
     <div>
         <input type="text" [(ngModel)]="stringFilter">
@@ -46,7 +61,7 @@ import { Ng2FilterPipe } from 'ng2-filter-pipe';
     </div>  
   `
 })
-
+ 
 export class AppComponent {
   array: string[] = ['one', 'two', 'three', 'four'];
   stringFilter: string = '';

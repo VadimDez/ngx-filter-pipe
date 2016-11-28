@@ -1,6 +1,6 @@
 {
   "name": "ng2-filter-pipe",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",
   "angular-cli": {},
@@ -11,7 +11,8 @@
     "test": "ng test --watch=false",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "minify": "uglifyjs ./dist/app/shared/ng2-filter.pipe.js --compress --mangle --output ./ng2-filter.pipe.min.js --source-map ./ng2-filter.pipe.min.js.map"
+    "minify": "uglifyjs ./dist/app/shared/ng2-filter.pipe.js --compress --mangle --output ./ng2-filter.pipe.min.js --source-map ./ng2-filter.pipe.min.js.map",
+    "build": "ngc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
   },
   "homepage": "https://github.com/VadimDez/ng2-filter-pipe#readme",
   "peerDependencies": {
-    "@angular/core": "^2.2.1"
+    "@angular/core": "^2.2.3"
   },
   "dependencies": {},
   "devDependencies": {
@@ -34,7 +35,14 @@
     "@angular/http": "2.2.3",
     "@angular/platform-browser": "2.2.3",
     "@angular/platform-browser-dynamic": "2.2.3",
-    "angular-cli-ghpages": "^0.3.0",
+    "@types/core-js": "^0.9.34",
+    "@types/jasmine": "^2.2.34",
+    "@types/node": "^6.0.51",
+    "@types/phantom": "0.0.29",
+    "@types/protractor": "^1.5.20",
+    "@types/selenium-webdriver": "2.44.*",
+    "@types/systemjs": "^0.19.31",
+    "angular-cli-ghpages": "^0.3.2",
     "codelyzer": "1.0.0-beta.4",
     "ember-cli-inject-live-reload": "^1.4.1",
     "es6-shim": "^0.35.1",

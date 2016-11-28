@@ -39,6 +39,34 @@
                 </div>
               </div>
               <div>
+                <form id="objectFilter__bool">
+                  <div>
+                    <label>object.bool</label>
+                  </div>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option1-true">
+                    <input [(ngModel)]="objectsFilter.bool"
+                           [value]="true"
+                           type="radio"
+                           id="option1-true"
+                           class="mdl-radio__button"
+                           name="options"
+                           checked
+                    >
+                    <span class="mdl-radio__label">True</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option1-false">
+                    <input [(ngModel)]="objectsFilter.bool"
+                           [value]="false"
+                           type="radio"
+                           id="option1-false"
+                           class="mdl-radio__button"
+                           name="options"
+                    >
+                    <span class="mdl-radio__label">False</span>
+                  </label>
+                </form>
+              </div>
+              <div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" id="object.nested.val"
                          [(ngModel)]="objectsFilter.nested.val"
@@ -149,6 +177,64 @@
           </div>
         </div>
 
+        <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset">
+
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>Booleans</h4>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+              <h5>Before filtering</h5>
+              {{ booleans | json }}
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+              <h5>After filtering</h5>
+
+              <div>
+                Filters:
+              </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <form>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-true">
+                    <input [(ngModel)]="boolFilter"
+                           [value]="true"
+                           type="radio"
+                           id="option-true"
+                           class="mdl-radio__button"
+                           name="options"
+                           checked
+                    >
+                    <span class="mdl-radio__label">True</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-false">
+                    <input [(ngModel)]="boolFilter"
+                           [value]="false"
+                           type="radio"
+                           id="option-false"
+                           class="mdl-radio__button"
+                           name="options"
+                    >
+                    <span class="mdl-radio__label">False</span>
+                  </label>
+                </form>
+              </div>
+              <div>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                  <thead>
+                  <tr>
+                    <th>Boolean</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let bool of booleans | filterBy: boolFilter">
+                    <td>{{ bool }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>

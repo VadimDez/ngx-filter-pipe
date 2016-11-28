@@ -6,26 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  objectsFilter = { test: 'value', num: 1, nested: { val: 1 } };
+  objectsFilter = { test: 'value', num: 1, bool: true, nested: { val: 1 } };
   objects = [
     {
       test: 'value',
       num: 1,
+      bool: true,
       nested: {
         val: 1
       }
     },
     {
       test: 'value1',
-      num: 12
+      num: 12,
+      bool: false
     },
     {
       test: 'value2',
-      num: 25
+      num: 25,
+      bool: true
     },
     {
       test: 'value3',
       num: 111,
+      bool: false,
       nested: {
         val: 2
       }
@@ -49,4 +53,7 @@ export class AppComponent {
     21,
     111
   ];
+
+  boolFilter = true;
+  booleans = [true, false];
 }
