@@ -9,7 +9,8 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // Ng2FilterPipe
   ],
   imports: [
     BrowserModule,

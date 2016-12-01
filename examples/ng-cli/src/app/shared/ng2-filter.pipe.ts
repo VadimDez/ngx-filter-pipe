@@ -72,6 +72,10 @@ export class Ng2FilterPipe {
   transform(array: any[], filter: any): any {
     const type = typeof filter;
 
+    if (!array) {
+      return array;
+    }
+
     if (type === 'boolean') {
       return array.filter(this.filterByBoolean(filter));
     }

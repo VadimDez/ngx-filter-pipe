@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+* [[#7](https://github.com/VadimDez/ng2-filter-pipe/issues/7)] - Fails if trying to filter null
+
+
 ## 0.1.0
 * [[#9](https://github.com/VadimDez/ng2-filter-pipe/issues/9)] - Update dependencies
 * [[#10](https://github.com/VadimDez/ng2-filter-pipe/issues/10)] - Added filter by boolean
