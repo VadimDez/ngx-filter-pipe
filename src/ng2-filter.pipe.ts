@@ -31,7 +31,7 @@ export class Ng2FilterPipe {
           return false;
         }
 
-        const type = typeof value[key];
+        const type = typeof filter[key];
         let isMatching;
 
         if (type === 'boolean') {
