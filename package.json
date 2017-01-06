@@ -25,7 +25,9 @@
   "peerDependencies": {
     "@angular/core": "^2.2.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "typings": "^2.0.0"
+  },
   "devDependencies": {
     "@angular/common": "2.2.3",
     "@angular/compiler": "2.2.3",
@@ -59,8 +61,7 @@
     "systemjs": "0.19.41",
     "ts-node": "^1.7.0",
     "tslint": "^4.0.0",
-    "typescript": "^2.0.10",
-    "typings": "^2.0.0",
+    "typescript": "^2.0.10"
     "uglifyjs": "^2.4.10",
     "zone.js": "^0.6.26"
   },
