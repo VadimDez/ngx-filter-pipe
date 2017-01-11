@@ -1,6 +1,6 @@
 {
   "name": "ng2-filter-pipe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",
   "angular-cli": {},
