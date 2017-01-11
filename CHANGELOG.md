@@ -1,11 +1,13 @@
 # Changelog
 
+## 0.1.3
+* [[#14](https://github.com/VadimDez/ng2-filter-pipe/issues/14)] - sh: typings: command not found
+
 ## 0.1.2
 * [[#11](https://github.com/VadimDez/ng2-filter-pipe/issues/11)] - Fix filter by object bug
 
 ## 0.1.1
 * [[#7](https://github.com/VadimDez/ng2-filter-pipe/issues/7)] - Fails if trying to filter null
-
 
 ## 0.1.0
 * [[#9](https://github.com/VadimDez/ng2-filter-pipe/issues/9)] - Update dependencies
