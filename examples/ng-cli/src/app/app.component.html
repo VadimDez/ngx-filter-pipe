@@ -235,6 +235,56 @@
             </div>
           </div>
         </div>
+
+        <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>Getters</h4>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col">
+              <h5>Before filtering</h5>
+              {{ objectsWithGetters | json }}
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col">
+              <h5>After filtering</h5>
+
+              <div>
+                Filters:
+              </div>
+
+              <div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input"
+                         type="text"
+                         id="objectsWithGettersFilter.name"
+                         [(ngModel)]="objectsWithGettersFilter.name"
+                         [value]="objectsWithGettersFilter.name"
+                  >
+                  <label class="mdl-textfield__label" for="objectsWithGettersFilter.name">Filter by name</label>
+                </div>
+              </div>
+
+              <div>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                  <thead>
+                  <tr>
+                    <th>Object</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let object of objectsWithGetters | filterBy: objectsWithGettersFilter">
+                    <td>{{ object | json }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+                {{ objectsWithGettersFilter | json }}
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>

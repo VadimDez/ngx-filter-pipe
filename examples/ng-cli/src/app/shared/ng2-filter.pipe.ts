@@ -27,21 +27,23 @@ export class Ng2FilterPipe {
   private filterByObject(filter) {
     return value => {
       for (let key in filter) {
-        if (!value.hasOwnProperty(key)) {
+
+        if (!value.hasOwnProperty(key) && !Object.getOwnPropertyDescriptor(Object.getPrototypeOf(value), key)) {
           return false;
         }
 
+        let val = this.getValue(value, key);
         const type = typeof filter[key];
         let isMatching;
 
         if (type === 'boolean') {
-          isMatching = this.filterByBoolean(filter[key])(value[key]);
+          isMatching = this.filterByBoolean(filter[key])(val);
         } else if (type === 'string') {
-          isMatching = this.filterByString(filter[key])(value[key]);
+          isMatching = this.filterByString(filter[key])(val);
         } else if (type === 'object') {
-          isMatching = this.filterByObject(filter[key])(value[key]);
+          isMatching = this.filterByObject(filter[key])(val);
         } else {
-          isMatching = this.filterDefault(filter[key])(value[key]);
+          isMatching = this.filterDefault(filter[key])(val);
         }
 
         if (!isMatching) {
@@ -51,6 +53,26 @@ export class Ng2FilterPipe {
 
       return true;
     }
+  }
+
+  /**
+   * Checks function's value if type is function otherwise same value
+   * @param value
+   * @returns {any}
+   */
+  /**
+   *
+   * @param object
+   * @param key
+   * @returns {any|void|(()=>any)|_Chain<T>|Function}
+   */
+  private getValue(object: any, key: any) {
+    if (typeof object[key] !== 'function') {
+      return object[key];
+    }
+
+    object[key] = object[key].bind(object);
+    return object[key]();
   }
 
   /**

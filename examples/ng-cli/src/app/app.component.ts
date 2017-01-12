@@ -1,10 +1,25 @@
 import { Component } from '@angular/core';
 
+class User {
+  firstName: string;
+  lastName: string;
+
+  constructor(first: string, last: string) {
+    this.firstName = first;
+    this.lastName = last;
+  }
+
+  name() {
+    return `${ this.firstName } ${ this.lastName }`;
+  }
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   objectsFilter = { test: 'value', num: 1, bool: true, nested: { val: 1 } };
   objects = [
@@ -56,4 +71,11 @@ export class AppComponent {
 
   boolFilter = true;
   booleans = [true, false];
+
+  objectsWithGetters: User[] = [
+    new User('first', 'last'),
+    new User('firstName', 'lastName'),
+    new User('Mario', 'Rossi')
+  ];
+  objectsWithGettersFilter: any = { name: '' };
 }
