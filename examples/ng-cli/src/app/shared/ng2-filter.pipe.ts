@@ -71,7 +71,7 @@ export class Ng2FilterPipe {
       return object[key];
     }
 
-    object[key] = object[key].bind(object);
+    // object[key] = object[key].bind(object);
     return object[key]();
   }
 

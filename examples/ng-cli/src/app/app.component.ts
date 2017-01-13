@@ -9,7 +9,7 @@ class User {
     this.lastName = last;
   }
 
-  name() {
+  get name() {
     return `${ this.firstName } ${ this.lastName }`;
   }
 }
