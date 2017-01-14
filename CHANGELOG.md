@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.4
+* [[#17](https://github.com/VadimDez/ng2-filter-pipe/issues/17)] - Can't filter by getter properties of classes
+
 ## 0.1.3
 * [[#14](https://github.com/VadimDez/ng2-filter-pipe/issues/14)] - sh: typings: command not found
 
