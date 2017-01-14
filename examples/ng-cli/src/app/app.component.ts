@@ -7,6 +7,13 @@ class User {
   constructor(first: string, last: string) {
     this.firstName = first;
     this.lastName = last;
+
+    // you have to bind function in case you want to filter by getName function
+    this.getName = this.getName.bind(this);
+  }
+
+  getName() {
+    return `${ this.firstName } ${ this.lastName }`;
   }
 
   get name() {
@@ -77,5 +84,5 @@ export class AppComponent {
     new User('firstName', 'lastName'),
     new User('Mario', 'Rossi')
   ];
-  objectsWithGettersFilter: any = { name: '' };
+  objectsWithGettersFilter: any = { name: null };
 }

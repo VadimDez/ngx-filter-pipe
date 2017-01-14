@@ -32,7 +32,7 @@ export class Ng2FilterPipe {
           return false;
         }
 
-        let val = this.getValue(value, key);
+        let val = this.getValue(value[key]);
         const type = typeof filter[key];
         let isMatching;
 
@@ -60,19 +60,8 @@ export class Ng2FilterPipe {
    * @param value
    * @returns {any}
    */
-  /**
-   *
-   * @param object
-   * @param key
-   * @returns {any|void|(()=>any)|_Chain<T>|Function}
-   */
-  private getValue(object: any, key: any) {
-    if (typeof object[key] !== 'function') {
-      return object[key];
-    }
-
-    // object[key] = object[key].bind(object);
-    return object[key]();
+  private getValue(value: any) {
+    return typeof value === 'function' ? value() : value;
   }
 
   /**
