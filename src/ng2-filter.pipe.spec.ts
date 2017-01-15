@@ -75,14 +75,40 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, [])).toEqual(objects);
   });
 
-  it('should filter by using $or operator', () => {
-    const objects = [
-      {
-        valueA: 1,
-        valueB: 2
+
+  it('should get value from getter', () => {
+    class User {
+      firstName: string;
+      lastName: string;
+
+      constructor(first: string, last: string) {
+        this.firstName = first;
+        this.lastName = last;
       }
+
+      get name() {
+        return `${ this.firstName } ${ this.lastName }`;
+      }
+    }
+    const userA = new User('Abc', '123');
+    const objects = [
+      userA,
+      new User('Qwe', '123')
     ];
 
-    expect(pipe.transform(objects, { $or: [{ valueA: 1 }, { valueB: 2 }] })).toEqual(objects);
+    expect(pipe.transform(objects, { name: '123' })).toEqual(objects);
+    expect(pipe.transform(objects, { name: 'Abc 123' })).toEqual([userA]);
+    expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
   });
+
+  // it('should filter by using $or operator', () => {
+  //   const objects = [
+  //     {
+  //       valueA: 1,
+  //       valueB: 2
+  //     }
+  //   ];
+  //
+  //   expect(pipe.transform(objects, { $or: [{ valueA: 1 }, { valueB: 2 }] })).toEqual(objects);
+  // });
 });
