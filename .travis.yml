@@ -3,6 +3,7 @@ language: node_js
 node_js:
   - '5'
 before_install:
+  - cd ./examples/ng-cli
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 before_script:
