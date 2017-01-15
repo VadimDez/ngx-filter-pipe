@@ -1,7 +1,7 @@
-sudo: false
+sudo: true
 language: node_js
 node_js:
-  - '5'
+  - '6'
 before_install:
   - cd ./examples/ng-cli
   - export DISPLAY=:99.0
