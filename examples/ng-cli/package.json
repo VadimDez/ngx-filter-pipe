@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test",
+    "test": "ng test --watch=false",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
@@ -44,6 +44,7 @@
     "protractor": "4.0.9",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
+    "typings": "^2.0.0",
     "typescript": "~2.0.3",
     "webdriver-manager": "10.2.5"
   }
