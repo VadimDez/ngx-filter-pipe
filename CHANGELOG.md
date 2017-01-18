@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.5
+* [[#15](https://github.com/VadimDez/ng2-filter-pipe/issues/15)] - Filter by object key which can be equals null
+
 ## 0.1.4
 * [[#17](https://github.com/VadimDez/ng2-filter-pipe/issues/17)] - Can't filter by getter properties of classes
 
