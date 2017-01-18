@@ -100,6 +100,30 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
   });
 
+  it('should filter by empty filter string', () => {
+    const objects = [
+      'test',
+      'test1',
+      'test2',
+      'test3'
+    ];
+
+    expect(pipe.transform(objects, '')).toEqual(objects);
+    expect(pipe.transform(objects, null)).toEqual(objects);
+    expect(pipe.transform(objects, void 0)).toEqual(objects);
+  });
+
+  it('should filter empty object', () => {
+    const objects = [
+      '',
+      null
+    ];
+
+    expect(pipe.transform(objects, '')).toEqual(objects);
+    expect(pipe.transform(objects, null)).toEqual(objects);
+    expect(pipe.transform(objects, void 0)).toEqual(objects);
+  });
+
   // it('should filter by using $or operator', () => {
   //   const objects = [
   //     {
