@@ -1,11 +1,16 @@
 <h1 align="center">Angular2 Filter Pipe</h1>
 
 <p align="center">
-    <a href="https://badge.fury.io/js/ng2-filter-pipe">
-      <img src="https://badge.fury.io/js/ng2-filter-pipe.svg" alt="npm version" height="18">
-    </a>
+  <a href="https://travis-ci.org/VadimDez/ng2-filter-pipe" alt="build">
+    <img src="https://travis-ci.org/VadimDez/ng2-filter-pipe.svg?branch=master" height="18">
+  </a>
+  
+  <a href="https://badge.fury.io/js/ng2-filter-pipe">
+    <img src="https://badge.fury.io/js/ng2-filter-pipe.svg" alt="npm version" height="18">
+  </a>
+  
   <a href="https://david-dm.org/vadimdez/ng2-filter-pipe" title="dependencies status">
-    <img src="https://david-dm.org/vadimdez/ng2-filter-pipe.svg"/>
+    <img src="https://david-dm.org/vadimdez/ng2-filter-pipe.svg" height="18">
   </a>
 </p>
 
