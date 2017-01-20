@@ -58,7 +58,7 @@ import { Component } from '@angular/core';
     <div>
         <input type="text" [(ngModel)]="stringFilter">
         <ul>
-          <li *ngFor="let item of array | filterBy: stringFilter"></li>
+          <li *ngFor="let item of array | filterBy: stringFilter">{{ item }}</li>
           
           <!-- in case you want to show empty message -->
           <li *ngIf="(array | filterBy: stringFilter).length === 0">No matching elements</li>
