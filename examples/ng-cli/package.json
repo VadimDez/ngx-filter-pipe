@@ -8,7 +8,8 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test --watch=false",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "gh-pages": "ngh --message=\"update\" --dir ./dist"
   },
   "private": true,
   "dependencies": {
@@ -32,7 +33,7 @@
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.21",
-    "angular-cli-ghpages": "^0.3.2",
+    "angular-cli-ghpages": "^0.4.1",
     "codelyzer": "~1.0.0-beta.3",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
@@ -44,8 +45,8 @@
     "protractor": "4.0.9",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
-    "typings": "^2.0.0",
     "typescript": "~2.0.3",
+    "typings": "^2.0.0",
     "webdriver-manager": "10.2.5"
   }
 }
