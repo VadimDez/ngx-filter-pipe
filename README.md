@@ -56,20 +56,20 @@ import { Component } from '@angular/core';
   selector: 'example-app',
   template: `
     <div>
-        <input type="text" [(ngModel)]="stringFilter">
+        <input type="text" [(ngModel)]="userFilter.name" placeholder="name">
         <ul>
-          <li *ngFor="let item of array | filterBy: stringFilter">{{ item }}</li>
+          <li *ngFor="let user of users | filterBy: userFilter">{{ user.name }}</li>
           
           <!-- in case you want to show empty message -->
-          <li *ngIf="(array | filterBy: stringFilter).length === 0">No matching elements</li>
+          <li *ngIf="(users | filterBy: stringFilter).length === 0">No matching elements</li>
         </ul>
     </div>  
   `
 })
  
 export class AppComponent {
-  array: string[] = ['one', 'two', 'three', 'four'];
-  stringFilter: string = '';
+  users: any[] = [{ name: 'John' }, { name: 'Jane' }, { name: 'Mario' }];
+  userFilter: any = { name: '' };
 }
 ```
 
