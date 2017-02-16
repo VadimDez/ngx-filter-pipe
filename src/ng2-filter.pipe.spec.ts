@@ -101,6 +101,18 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
   });
 
+  it('should take a function as a filter', () => {
+    const objects = [
+      { num: 1, nested: { a: 1 } },
+      { num: 1, nested: { a: 2 } },
+      { num: 2, nested: { a: 2, b: 'waz' } },
+      { num: 2, nested: { a: 2, b: 'was' } }
+    ];
+
+    const fn = (object: any) => object.num < 2 || object.nested.b === 'was';
+    expect(pipe.transform(objects, fn)).toEqual([objects[0], objects[1], objects[3]]);
+  });
+
   // it('should filter by using $or operator', () => {
   //   const objects = [
   //     {
