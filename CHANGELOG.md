@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.6
+* [[#24](https://github.com/VadimDez/ng2-filter-pipe/pull/24)] - Ability to pass in a function as a filter
+
 ## 0.1.5
 * [[#15](https://github.com/VadimDez/ng2-filter-pipe/issues/15)] - Filter by object key which can be equals null
 

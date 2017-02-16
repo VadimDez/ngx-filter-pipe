@@ -105,6 +105,10 @@ export class Ng2FilterPipe {
       return array.filter(this.filterByObject(filter));
     }
 
+    if (type === 'function') {
+      return array.filter(filter);
+    }
+
     return array.filter(this.filterDefault(filter));
   }
 }
