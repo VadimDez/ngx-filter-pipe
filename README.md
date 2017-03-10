@@ -24,6 +24,10 @@ Angular 2 pipeline for filtering arrays.
 
 ##### [Demo Page](https://vadimdez.github.io/ng2-filter-pipe/)
 
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/3748453/23809236/3276cf26-05cd-11e7-94f7-b4078104adbd.gif" width="300">
+</p>
+
 ## Install
 
 ```
