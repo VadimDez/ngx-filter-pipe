@@ -1,6 +1,10 @@
 <h1 align="center">Angular2 Filter Pipe</h1>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/ng2-filter-pipe">
+    <img src="https://img.shields.io/npm/dm/ng2-filter-pipe.svg?style=flat" alt="downloads">
+  </a>
+
   <a href="https://travis-ci.org/VadimDez/ng2-filter-pipe" alt="build">
     <img src="https://travis-ci.org/VadimDez/ng2-filter-pipe.svg?branch=master" height="18">
   </a>
@@ -19,6 +23,10 @@
 Angular 2 pipeline for filtering arrays.
 
 ##### [Demo Page](https://vadimdez.github.io/ng2-filter-pipe/)
+
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/3748453/23809236/3276cf26-05cd-11e7-94f7-b4078104adbd.gif" width="300">
+</p>
 
 ## Install
 
