@@ -2,6 +2,7 @@
 
 ## 0.1.7
 * [[#28](https://github.com/VadimDez/ng2-filter-pipe/pull/28)] - Filter number by string
+* Removed post install script
 
 ## 0.1.6
 * [[#24](https://github.com/VadimDez/ng2-filter-pipe/pull/24)] - Ability to pass in a function as a filter
