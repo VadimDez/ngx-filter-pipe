@@ -16,7 +16,7 @@ export class Ng2FilterPipe {
       filter = filter.toLowerCase();
     }
     return value => {
-      return !filter || (value ? value.toLowerCase().indexOf(filter) !== -1 : false);
+      return !filter || (value ? ('' + value).toLowerCase().indexOf(filter) !== -1 : false);
     }
   }
 

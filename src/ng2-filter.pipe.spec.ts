@@ -75,7 +75,6 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, [])).toEqual(objects);
   });
 
-
   it('should get value from getter', () => {
     class User {
       firstName: string;
@@ -101,6 +100,31 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
   });
 
+  it('should filter by empty filter string', () => {
+    const objects = [
+      'test',
+      'test1',
+      'test2',
+      'test3'
+    ];
+
+    expect(pipe.transform(objects, '')).toEqual(objects);
+    expect(pipe.transform(objects, null)).toEqual(objects);
+    expect(pipe.transform(objects, void 0)).toEqual(objects);
+  });
+
+  it('should filter empty object', () => {
+    const objects = [
+      '',
+      null
+    ];
+
+    expect(pipe.transform(objects, '')).toEqual(objects);
+    expect(pipe.transform(objects, null)).toEqual(objects);
+    expect(pipe.transform(objects, void 0)).toEqual(objects);
+  });
+
+
   it('should take a function as a filter', () => {
     const objects = [
       { num: 1, nested: { a: 1 } },
@@ -112,6 +136,17 @@ describe('Pipe: Ng2FilterPipe', () => {
     const fn = (object: any) => object.num < 2 || object.nested.b === 'was';
     expect(pipe.transform(objects, fn)).toEqual([objects[0], objects[1], objects[3]]);
   });
+
+  it('should work with different types', () => {
+    const objects = [
+      { num: 1 },
+      { num: 2 },
+      { num: 3 }
+    ];
+    const filter = { num: '2' };
+
+    expect(pipe.transform(objects, filter)).toEqual([objects[1]]);
+  })
 
   // it('should filter by using $or operator', () => {
   //   const objects = [
