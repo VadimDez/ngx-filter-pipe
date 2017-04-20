@@ -1,6 +1,6 @@
 {
   "name": "ng2-filter-pipe",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",
   "angular-cli": {},
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/VadimDez/ng2-filter-pipe#readme",
   "peerDependencies": {
-    "@angular/core": "^2.2.3"
+    "@angular/core": ">=2.2.3"
   },
   "dependencies": {
     "typings": "^2.0.0"

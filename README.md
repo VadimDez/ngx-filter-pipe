@@ -1,4 +1,4 @@
-<h1 align="center">Angular2 Filter Pipe</h1>
+<h1 align="center">Angular2+ Filter Pipe</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/ng2-filter-pipe">
@@ -20,7 +20,7 @@
 
 > Filter arrays
  
-Angular 2 pipeline for filtering arrays.
+Angular 2+ pipeline for filtering arrays.
 
 ##### [Demo Page](https://vadimdez.github.io/ng2-filter-pipe/)
 
