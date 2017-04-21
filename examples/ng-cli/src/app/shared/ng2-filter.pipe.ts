@@ -35,14 +35,16 @@ export class Ng2FilterPipe {
         }
 
         let val = this.getValue(value[key]);
-        const type = typeof filter[key];
+        const filterType = typeof filter[key];
         let isMatching;
 
-        if (type === 'boolean') {
+        if (filterType === 'boolean') {
           isMatching = this.filterByBoolean(filter[key])(val);
-        } else if (type === 'string') {
+        } else if (filterType === 'string') {
           isMatching = this.filterByString(filter[key])(val);
-        } else if (type === 'object') {
+        } else if (filter[key] instanceof Array && val instanceof Array) {
+          isMatching = this.filterByArray(filter[key])(val);
+        } else if (filterType === 'object') {
           isMatching = this.filterByObject(filter[key])(val);
         } else {
           isMatching = this.filterDefault(filter[key])(val);
@@ -55,6 +57,28 @@ export class Ng2FilterPipe {
 
       return true;
     }
+  }
+
+  /**
+   * Filter array by array
+   * Match at least one value
+   * @param filter
+   * @returns {(value:any[])=>boolean}
+   */
+  private filterByArray(filter: any[]) {
+    return (value: any[]) => {
+      let hasMatch = false;
+      const length = value.length;
+
+      for (let i = 0; i < length; i++) {
+        if (filter.indexOf(value[i]) !== -1) {
+          hasMatch = true;
+          break;
+        }
+      }
+
+      return hasMatch;
+    };
   }
 
   /**
