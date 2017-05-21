@@ -146,7 +146,20 @@ describe('Pipe: Ng2FilterPipe', () => {
     const filter = { num: '2' };
 
     expect(pipe.transform(objects, filter)).toEqual([objects[1]]);
-  })
+  });
+
+  it('should filter by two variables', () => {
+    const objects = [
+      { name: 'Mario', code: 'Mario' },
+      { name: 'Mario', code: 'Guy' },
+      { name: 'Guy', code: 'Mario' },
+    ];
+    const filter = { name: 'Mario', code: 'Mario' };
+
+    expect(pipe.transform(objects, filter)).toEqual([objects[0]]);
+
+    expect(pipe.transform(objects, { name: 'Guy', code: 'Guy' })).toEqual([]);
+  });
 
   // it('should filter by using $or operator', () => {
   //   const objects = [
