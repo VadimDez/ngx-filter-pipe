@@ -1,10 +1,13 @@
 # Changelog
 
+## 0.1.9
+* [[#32](https://github.com/VadimDez/ng2-filter-pipe/issues/32)] - Filter fails when filter value is zero
+
 ## 0.1.8
 * Removed warning in Angular 4+
 
 ## 0.1.7
-* [[#28](https://github.com/VadimDez/ng2-filter-pipe/pull/28)] - Filter number by string
+* [[#28](https://github.com/VadimDez/ng2-filter-pipe/issues/28)] - Filter number by string
 * Removed post install script
 
 ## 0.1.6
