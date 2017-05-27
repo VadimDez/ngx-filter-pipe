@@ -170,6 +170,7 @@ describe('Pipe: Ng2FilterPipe', () => {
     const filter = { age: 0 };
 
     expect(pipe.transform(objects, filter)).toEqual([objects[0]]);
+    expect(pipe.transform([1, 2, 0], 0)).toEqual([0]);
   });
 
   // it('should filter by using $or operator', () => {
