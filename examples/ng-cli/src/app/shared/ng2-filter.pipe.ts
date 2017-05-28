@@ -42,10 +42,8 @@ export class Ng2FilterPipe {
           isMatching = this.filterByBoolean(filter[key])(val);
         } else if (filterType === 'string') {
           isMatching = this.filterByString(filter[key])(val);
-        } else if (filter[key] instanceof Array && val instanceof Array) {
-          isMatching = this.filterByArray(filter[key])(val);
         } else if (filterType === 'object') {
-          isMatching = this.filterByObject(filter[key])(val);
+          isMatching = filter[key].hasOwnProperty('$or') ? this.filterByOr(filter[key])(val) : this.filterByObject(filter[key])(val);
         } else {
           isMatching = this.filterDefault(filter[key])(val);
         }
@@ -59,19 +57,13 @@ export class Ng2FilterPipe {
     }
   }
 
-  /**
-   * Filter array by array
-   * Match at least one value
-   * @param filter
-   * @returns {(value:any[])=>boolean}
-   */
-  private filterByArray(filter: any[]) {
+  private filterByOr(filter: { $or: any[] }) {
     return (value: any[]) => {
       let hasMatch = false;
-      const length = value.length;
+      const length = filter.$or.length;
 
       for (let i = 0; i < length; i++) {
-        if (filter.indexOf(value[i]) !== -1) {
+        if (value.indexOf(filter.$or[i]) !== -1) {
           hasMatch = true;
           break;
         }

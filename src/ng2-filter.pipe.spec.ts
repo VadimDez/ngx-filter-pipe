@@ -169,15 +169,15 @@ describe('Pipe: Ng2FilterPipe', () => {
       { languages: ['German', 'English'] }
     ];
 
-    const filter = { languages: ['English'] };
+    let filter = { languages: ['English'] };
 
     expect(pipe.transform(objects, filter)).toEqual([objects[0], objects[1], objects[3]]);
 
-    const filter1 = { languages: ['English', 'German'] };
-    expect(pipe.transform(objects, filter1)).toEqual(objects);
+    filter = { languages: ['English', 'German'] };
+    expect(pipe.transform(objects, filter)).toEqual(objects);
 
-    const filter2 = { languages: ['German'] };
-    expect(pipe.transform(objects, filter2)).toEqual([ objects[1], objects[2], objects[3]]);
+    filter = { languages: ['German'] };
+    expect(pipe.transform(objects, filter)).toEqual([ objects[1], objects[2], objects[3]]);
   });
 
   // it('should filter by using $or operator', () => {
