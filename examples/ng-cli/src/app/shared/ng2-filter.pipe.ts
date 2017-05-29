@@ -58,12 +58,21 @@ export class Ng2FilterPipe {
   }
 
   private filterByOr(filter: { $or: any[] }) {
-    return (value: any[]) => {
+    return (value: any) => {
       let hasMatch = false;
       const length = filter.$or.length;
+      const isArray = value instanceof Array;
+
+      const arrayComparison = (i) => {
+        return value.indexOf(filter.$or[i]) !== -1;
+      };
+      const otherComparison = (i) => {
+        return value === filter.$or[i];
+      };
+      const comparison = isArray ? arrayComparison : otherComparison;
 
       for (let i = 0; i < length; i++) {
-        if (value.indexOf(filter.$or[i]) !== -1) {
+        if (comparison(i)) {
           hasMatch = true;
           break;
         }

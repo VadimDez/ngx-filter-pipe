@@ -180,7 +180,7 @@ describe('Pipe: Ng2FilterPipe', () => {
   //   expect(pipe.transform(objects, filter)).toEqual([ objects[1], objects[2], objects[3]]);
   // });
 
-  it('should filter by using $or operator', () => {
+  it('should filter array by using $or operator', () => {
     const objects = [
       { languages: ['English'] },
       { languages: ['English', 'German'] },
@@ -190,4 +190,20 @@ describe('Pipe: Ng2FilterPipe', () => {
 
     expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }})).toEqual(objects);
   });
+
+  it('should filter string by using $or operator', () => {
+    const objects = [
+      { languages: 'English' },
+      { languages: 'German' }
+    ];
+
+    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }})).toEqual(objects);
+    expect(pipe.transform(objects, { languages: { $or: ['English'] }})).toEqual([objects[0]]);
+    expect(pipe.transform(objects, { languages: { $or: ['asd'] }})).toEqual([]);
+  });
+
+  // it('should filter array of string by using $or operator', () => {
+  //   const objects = [ 'English', 'German' ];
+  //   expect(pipe.transform(objects, { $or: ['English'] })).toEqual([objects[0]]);
+  // });
 });
