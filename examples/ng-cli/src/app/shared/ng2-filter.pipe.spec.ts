@@ -161,25 +161,6 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, filter)).toEqual([objects[0], objects[1], objects[3]]);
   });
 
-  // it('should filter array by array', () => {
-  //   const objects = [
-  //     { languages: ['English'] },
-  //     { languages: ['English', 'German'] },
-  //     { languages: ['German'] },
-  //     { languages: ['German', 'English'] }
-  //   ];
-  //
-  //   let filter = { languages: ['English'] };
-  //
-  //   expect(pipe.transform(objects, filter)).toEqual([objects[0], objects[1], objects[3]]);
-  //
-  //   filter = { languages: ['English', 'German'] };
-  //   expect(pipe.transform(objects, filter)).toEqual(objects);
-  //
-  //   filter = { languages: ['German'] };
-  //   expect(pipe.transform(objects, filter)).toEqual([ objects[1], objects[2], objects[3]]);
-  // });
-
   it('should filter array by using $or operator', () => {
     const objects = [
       { languages: ['English'] },
@@ -202,8 +183,20 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, { languages: { $or: ['asd'] }})).toEqual([]);
   });
 
-  // it('should filter array of string by using $or operator', () => {
-  //   const objects = [ 'English', 'German' ];
-  //   expect(pipe.transform(objects, { $or: ['English'] })).toEqual([objects[0]]);
-  // });
+  it('should filter array of string by using $or operator', () => {
+    const objects = [ 'English', 'German' ];
+    expect(pipe.transform(objects, { $or: ['English'] })).toEqual([objects[0]]);
+  });
+
+  it('should filter by using $or operator and another field', () => {
+    const objects = [
+      { languages: ['English', 'German'], age: 30 },
+      { languages: 'German', age: 27 }
+    ];
+
+    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 27 })).toEqual([objects[1]]);
+    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 30 })).toEqual([objects[0]]);
+    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 31 })).toEqual([]);
+    expect(pipe.transform(objects, { languages: { $or: ['English'] }, age: 27 })).toEqual([]);
+  });
 });
