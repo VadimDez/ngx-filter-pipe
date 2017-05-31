@@ -81,6 +81,63 @@ export class AppComponent {
 }
 ```
 
+### $or matching
+Use `$or` to filter by more then one values.
+
+`$or` expects an `Array`.
+
+In your component:
+```ts
+// your array
+const languages = ['English', 'German', 'Russian', 'Italian', 'Ukrainian'];
+// your $or filter
+const filter = { $or: ['German', 'English'] };
+```
+
+In your template:
+```html
+<div *ngFor="let language of languages | filterBy: filter">
+  {{ language }}
+</div>
+```
+
+Result:
+```html
+<div>English</div>
+<div>German</div>
+```
+
+#### $or example with nessted values
+In your component:
+```ts
+// your array
+const languages = [
+  { language: 'English' },
+  { language: 'German' },
+  { language: 'Italian' }
+];
+
+// your $or filter
+const filter = {
+  language: {
+    $or: ['Italian', 'English']
+  }
+};
+```
+
+In your template:
+```html
+<div *ngFor="let object of languages | filterBy: filter">
+  {{ object.language }}
+</div>
+```
+
+Result:
+```html
+<div>English</div>
+<div>Italian</div>
+```
+
 ## Test
 
 Run tests
