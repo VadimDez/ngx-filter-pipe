@@ -98,7 +98,7 @@ export class Ng2FilterPipe {
    */
   private filterDefault(filter) {
     return value => {
-      return !filter || filter == value;
+      return filter === undefined || filter == value;
     }
   }
 

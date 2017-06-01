@@ -148,6 +148,31 @@ describe('Pipe: Ng2FilterPipe', () => {
     expect(pipe.transform(objects, filter)).toEqual([objects[1]]);
   });
 
+  it('should filter by two variables', () => {
+    const objects = [
+      { name: 'Mario', code: 'Mario' },
+      { name: 'Mario', code: 'Guy' },
+      { name: 'Guy', code: 'Mario' },
+    ];
+    const filter = { name: 'Mario', code: 'Mario' };
+
+    expect(pipe.transform(objects, filter)).toEqual([objects[0]]);
+
+    expect(pipe.transform(objects, { name: 'Guy', code: 'Guy' })).toEqual([]);
+  });
+
+  it('should filter by 0', () => {
+    const objects = [
+      { age: 0 },
+      { age: 1 },
+      { age: 2 },
+    ];
+    const filter = { age: 0 };
+
+    expect(pipe.transform(objects, filter)).toEqual([objects[0]]);
+    expect(pipe.transform([1, 2, 0], 0)).toEqual([0]);
+  });
+
   it('should filter array by string', () => {
     const objects = [
       { languages: ['English'] },
