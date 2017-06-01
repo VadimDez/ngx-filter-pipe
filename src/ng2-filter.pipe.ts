@@ -30,6 +30,13 @@ export class Ng2FilterPipe {
     return value => {
       for (let key in filter) {
 
+        if (key === '$or') {
+          if (!this.filterByOr(filter.$or)(this.getValue(value))) {
+            return false;
+          }
+          continue;
+        }
+
         if (!value.hasOwnProperty(key) && !Object.getOwnPropertyDescriptor(Object.getPrototypeOf(value), key)) {
           return false;
         }
@@ -42,8 +49,6 @@ export class Ng2FilterPipe {
           isMatching = this.filterByBoolean(filter[key])(val);
         } else if (filterType === 'string') {
           isMatching = this.filterByString(filter[key])(val);
-        } else if (filter[key] instanceof Array && val instanceof Array) {
-          isMatching = this.filterByArray(filter[key])(val);
         } else if (filterType === 'object') {
           isMatching = this.filterByObject(filter[key])(val);
         } else {
@@ -60,18 +65,27 @@ export class Ng2FilterPipe {
   }
 
   /**
-   * Filter array by array
-   * Match at least one value
+   * Filter value by $or
+   *
    * @param filter
-   * @returns {(value:any[])=>boolean}
+   * @returns {(value:any)=>boolean}
    */
-  private filterByArray(filter: any[]) {
-    return (value: any[]) => {
+  private filterByOr(filter: any[]) {
+    return (value: any) => {
       let hasMatch = false;
-      const length = value.length;
+      const length = filter.length;
+      const isArray = value instanceof Array;
+
+      const arrayComparison = (i) => {
+        return value.indexOf(filter[i]) !== -1;
+      };
+      const otherComparison = (i) => {
+        return value === filter[i];
+      };
+      const comparison = isArray ? arrayComparison : otherComparison;
 
       for (let i = 0; i < length; i++) {
-        if (filter.indexOf(value[i]) !== -1) {
+        if (comparison(i)) {
           hasMatch = true;
           break;
         }

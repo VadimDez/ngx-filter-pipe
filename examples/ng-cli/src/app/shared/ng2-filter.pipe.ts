@@ -64,6 +64,12 @@ export class Ng2FilterPipe {
     }
   }
 
+  /**
+   * Filter value by $or
+   *
+   * @param filter
+   * @returns {(value:any)=>boolean}
+   */
   private filterByOr(filter: any[]) {
     return (value: any) => {
       let hasMatch = false;
