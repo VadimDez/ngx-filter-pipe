@@ -30,19 +30,26 @@ export class Ng2FilterPipe {
     return value => {
       for (let key in filter) {
 
+        if (key === '$or') {
+          if (!this.filterByOr(filter.$or)(this.getValue(value))) {
+            return false;
+          }
+          continue;
+        }
+
         if (!value.hasOwnProperty(key) && !Object.getOwnPropertyDescriptor(Object.getPrototypeOf(value), key)) {
           return false;
         }
 
         let val = this.getValue(value[key]);
-        const type = typeof filter[key];
+        const filterType = typeof filter[key];
         let isMatching;
 
-        if (type === 'boolean') {
+        if (filterType === 'boolean') {
           isMatching = this.filterByBoolean(filter[key])(val);
-        } else if (type === 'string') {
+        } else if (filterType === 'string') {
           isMatching = this.filterByString(filter[key])(val);
-        } else if (type === 'object') {
+        } else if (filterType === 'object') {
           isMatching = this.filterByObject(filter[key])(val);
         } else {
           isMatching = this.filterDefault(filter[key])(val);
@@ -55,6 +62,37 @@ export class Ng2FilterPipe {
 
       return true;
     }
+  }
+
+  /**
+   * Filter value by $or
+   *
+   * @param filter
+   * @returns {(value:any)=>boolean}
+   */
+  private filterByOr(filter: any[]) {
+    return (value: any) => {
+      let hasMatch = false;
+      const length = filter.length;
+      const isArray = value instanceof Array;
+
+      const arrayComparison = (i) => {
+        return value.indexOf(filter[i]) !== -1;
+      };
+      const otherComparison = (i) => {
+        return value === filter[i];
+      };
+      const comparison = isArray ? arrayComparison : otherComparison;
+
+      for (let i = 0; i < length; i++) {
+        if (comparison(i)) {
+          hasMatch = true;
+          break;
+        }
+      }
+
+      return hasMatch;
+    };
   }
 
   /**

@@ -8,15 +8,15 @@ import { AppComponent } from './app.component';
 import { Ng2FilterPipeModule } from './shared/ng2-filter.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    // Ng2FilterPipe
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     Ng2FilterPipeModule
+  ],
+  declarations: [
+    AppComponent,
+    // Ng2FilterPipe
   ],
   providers: [],
   bootstrap: [AppComponent]

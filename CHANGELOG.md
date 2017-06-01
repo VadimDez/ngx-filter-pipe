@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.10
+* [[#31](https://github.com/VadimDez/ng2-filter-pipe/issues/31)] - How to filter by two variables of the same array.
+* [[#4](https://github.com/VadimDez/ng2-filter-pipe/issues/4)] - Add $or operator.
+
 ## 0.1.9
 * [[#32](https://github.com/VadimDez/ng2-filter-pipe/issues/32)] - Filter fails when filter value is zero
 
