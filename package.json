@@ -1,6 +1,6 @@
 {
-  "name": "ng2-filter-pipe",
-  "version": "0.1.10",
+  "name": "ngx-filter-pipe",
+  "version": "1.0.0",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",
   "angular-cli": {},
@@ -11,17 +11,17 @@
     "test": "ng test --watch=false",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "minify": "uglifyjs ./dist/app/shared/ng2-filter.pipe.js --compress --mangle --output ./ng2-filter.pipe.min.js --source-map ./ng2-filter.pipe.min.js.map",
+    "minify": "uglifyjs ./dist/app/shared/ngx-filter.pipe.js --compress --mangle --output ./ngx-filter.pipe.min.js --source-map ./ngx-filter.pipe.min.js.map",
     "build": "ngc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://vadimdez@github.com/VadimDez/ng2-filter-pipe.git"
+    "url": "git+https://vadimdez@github.com/VadimDez/ngx-filter-pipe.git"
   },
   "bugs": {
-    "url": "https://github.com/VadimDez/ng2-filter-pipe/issues"
+    "url": "https://github.com/VadimDez/ngx-filter-pipe/issues"
   },
-  "homepage": "https://github.com/VadimDez/ng2-filter-pipe#readme",
+  "homepage": "https://github.com/VadimDez/ngx-filter-pipe#readme",
   "peerDependencies": {
     "@angular/core": ">=2.2.3"
   },

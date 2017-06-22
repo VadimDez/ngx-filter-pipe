@@ -1,20 +1,20 @@
 <h1 align="center">Angular2+ Filter Pipe</h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/ng2-filter-pipe">
-    <img src="https://img.shields.io/npm/dm/ng2-filter-pipe.svg?style=flat" alt="downloads">
+  <a href="https://www.npmjs.com/package/ngx-filter-pipe">
+    <img src="https://img.shields.io/npm/dm/ngx-filter-pipe.svg?style=flat" alt="downloads">
   </a>
 
-  <a href="https://travis-ci.org/VadimDez/ng2-filter-pipe" alt="build">
-    <img src="https://travis-ci.org/VadimDez/ng2-filter-pipe.svg?branch=master" height="18">
+  <a href="https://travis-ci.org/VadimDez/ngx-filter-pipe" alt="build">
+    <img src="https://travis-ci.org/VadimDez/ngx-filter-pipe.svg?branch=master" height="18">
   </a>
   
-  <a href="https://badge.fury.io/js/ng2-filter-pipe">
-    <img src="https://badge.fury.io/js/ng2-filter-pipe.svg" alt="npm version" height="18">
+  <a href="https://badge.fury.io/js/ngx-filter-pipe">
+    <img src="https://badge.fury.io/js/ngx-filter-pipe.svg" alt="npm version" height="18">
   </a>
   
-  <a href="https://david-dm.org/vadimdez/ng2-filter-pipe" title="dependencies status">
-    <img src="https://david-dm.org/vadimdez/ng2-filter-pipe.svg" height="18">
+  <a href="https://david-dm.org/vadimdez/ngx-filter-pipe" title="dependencies status">
+    <img src="https://david-dm.org/vadimdez/ngx-filter-pipe.svg" height="18">
   </a>
 </p>
 
@@ -28,17 +28,17 @@ Angular 2+ pipeline for filtering arrays.
 
 ### Demo Page
 
-[https://vadimdez.github.io/ng2-filter-pipe/](https://vadimdez.github.io/ng2-filter-pipe/)
+[https://vadimdez.github.io/ngx-filter-pipe/](https://vadimdez.github.io/ngx-filter-pipe/)
 
 ## Install
 
 ```
-npm install ng2-filter-pipe --save
+npm install ngx-filter-pipe --save
 ```
 
 ## Usage
 
-In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ng2-filter-pipe/blob/master/SYSTEMJS.md).
+In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
 
 Import `Ng2FilterPipeModule` to your module
 
@@ -47,7 +47,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { AppComponent } from './app';
  
-import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { Ng2FilterPipeModule } from 'ngx-filter-pipe';
  
 @NgModule({
   imports: [BrowserModule, Ng2FilterPipeModule],

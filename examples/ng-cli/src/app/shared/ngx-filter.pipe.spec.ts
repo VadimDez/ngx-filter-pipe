@@ -1,12 +1,12 @@
 /* tslint:disable:no-unused-variable */
 
-import { Ng2FilterPipe } from './ng2-filter.pipe';
+import { FilterPipe } from './ngx-filter.pipe';
 
-describe('Pipe: Ng2FilterPipe', () => {
-  let pipe: Ng2FilterPipe;
+describe('Pipe: FilterPipe', () => {
+  let pipe: FilterPipe;
 
   beforeEach(() => {
-    pipe = new Ng2FilterPipe();
+    pipe = new FilterPipe();
   });
 
   it('create an instance', () => {
