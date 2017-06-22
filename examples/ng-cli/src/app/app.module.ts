@@ -5,14 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 // import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-import { Ng2FilterPipeModule } from './shared/ng2-filter.module';
+import { FilterPipeModule } from './shared/ngx-filter.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2FilterPipeModule
+    FilterPipeModule
   ],
   declarations: [
     AppComponent,

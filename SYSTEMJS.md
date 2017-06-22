@@ -7,7 +7,7 @@ Append to `map`
 ```js
 var map = {
     ...
-    'ng2-filter-pipe': 'node_modules/ng2-filter-pipe'
+    'ngx-filter-pipe': 'node_modules/ngx-filter-pipe'
 }
 ```
 
@@ -16,6 +16,6 @@ and then add to `packages`
 ```js
 var packages = {
     ...
-    'ng2-filter-pipe': { main: 'dist/index.js' }
+    'ngx-filter-pipe': { main: 'dist/bundles/ngx-filter-pipe.umd.js' }
 }
 ````

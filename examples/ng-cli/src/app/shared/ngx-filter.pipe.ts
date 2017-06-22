@@ -9,7 +9,7 @@ import { Pipe, Injectable } from '@angular/core';
 })
 
 @Injectable()
-export class Ng2FilterPipe {
+export class FilterPipe {
 
   private filterByString(filter) {
     if (filter) {

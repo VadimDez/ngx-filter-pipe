@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0
+* [[#36](https://github.com/VadimDez/ngx-filter-pipe/issues/36)] - Changed name tp `ngx-filter-pipe`.
+* [[#38](https://github.com/VadimDez/ngx-filter-pipe/issues/38)] - Added UMD bundle.
+
+### Breaking changes
+
+* Module name was changed from `Ng2FilterPipeModule` to `FilterPipeModule`.
+* UMD bundle for `SYSTEMJS` was added. user `/dist/bundles/ngx-filter-pipe.umd.js` instead of `/dist/index.js`. 
+
 ## 0.1.10
 * [[#31](https://github.com/VadimDez/ng2-filter-pipe/issues/31)] - How to filter by two variables of the same array.
 * [[#4](https://github.com/VadimDez/ng2-filter-pipe/issues/4)] - Add $or operator.
