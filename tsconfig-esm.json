@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": false,
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -10,18 +10,7 @@
     "moduleResolution": "node",
     "rootDir": ".",
     "outDir": "./dist/",
-    "lib": ["es2015", "dom"],
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules"
-    ],
-    "types": [
-      "jasmine",
-      "selenium-webdriver",
-      "node",
-      "protractor",
-      "systemjs"
-    ]
+    "lib": ["es2015", "dom"]
   },
   "files": [
     "index.ts"
@@ -33,8 +22,5 @@
     "examples",
     "typings",
     "aot"
-  ],
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true
-  }
+  ]
 }

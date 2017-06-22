@@ -16,6 +16,6 @@ and then add to `packages`
 ```js
 var packages = {
     ...
-    'ngx-filter-pipe': { main: 'dist/index.js' }
+    'ngx-filter-pipe': { main: 'dist/bundles/ngx-filter-pipe.umd.js' }
 }
 ````
