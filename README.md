@@ -44,17 +44,17 @@ npm install ngx-filter-pipe --save
 
 In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
 
-Import `Ng2FilterPipeModule` to your module
+Import `FilterPipeModule` to your module
 
 ```ts
 import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { AppComponent } from './app';
  
-import { Ng2FilterPipeModule } from 'ngx-filter-pipe';
+import { FilterPipeModule } from 'ngx-filter-pipe';
  
 @NgModule({
-  imports: [BrowserModule, Ng2FilterPipeModule],
+  imports: [BrowserModule, FilterPipeModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
