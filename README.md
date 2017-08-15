@@ -42,7 +42,7 @@ npm install ngx-filter-pipe --save
 
 ## Usage
 
-In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
+In case you're using ```SystemJS``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
 
 Import `FilterPipeModule` to your module
 
