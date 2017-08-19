@@ -1,6 +1,10 @@
 <h1 align="center">Angular2+ Filter Pipe</h1>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/ng2-filter-pipe">
+    <img src="https://img.shields.io/npm/dm/ng2-filter-pipe.svg?style=flat" alt="downloads">
+  </a>
+  
   <a href="https://www.npmjs.com/package/ngx-filter-pipe">
     <img src="https://img.shields.io/npm/dm/ngx-filter-pipe.svg?style=flat" alt="downloads">
   </a>
@@ -38,19 +42,19 @@ npm install ngx-filter-pipe --save
 
 ## Usage
 
-In case you're using ```systemjs``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
+In case you're using ```SystemJS``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
 
-Import `Ng2FilterPipeModule` to your module
+Import `FilterPipeModule` to your module
 
 ```ts
 import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { AppComponent } from './app';
  
-import { Ng2FilterPipeModule } from 'ngx-filter-pipe';
+import { FilterPipeModule } from 'ngx-filter-pipe';
  
 @NgModule({
-  imports: [BrowserModule, Ng2FilterPipeModule],
+  imports: [BrowserModule, FilterPipeModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
