@@ -74,7 +74,6 @@ export class FilterPipe {
     return (value: any) => {
       let hasMatch = false;
       const length = filter.length;
-      const isArray = value instanceof Array;
 
       const arrayComparison = (i) => {
         return value.indexOf(filter[i]) !== -1;
@@ -82,7 +81,7 @@ export class FilterPipe {
       const otherComparison = (i) => {
         return value === filter[i];
       };
-      const comparison = isArray ? arrayComparison : otherComparison;
+      const comparison = Array.isArray(value) ? arrayComparison : otherComparison;
 
       for (let i = 0; i < length; i++) {
         if (comparison(i)) {
