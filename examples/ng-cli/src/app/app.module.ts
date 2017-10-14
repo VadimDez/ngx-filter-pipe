@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-// import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-import { FilterPipeModule } from './shared/ngx-filter.module';
+import { FilterPipeModule } from './shared';
+import { MDL } from './shared/mdl';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { FilterPipeModule } from './shared/ngx-filter.module';
   ],
   declarations: [
     AppComponent,
-    // Ng2FilterPipe
+    MDL
   ],
   providers: [],
   bootstrap: [AppComponent]
