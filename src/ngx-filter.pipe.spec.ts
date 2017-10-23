@@ -225,3 +225,4 @@ describe('Pipe: FilterPipe', () => {
     expect(pipe.transform(objects, { languages: { $or: ['English'] }, age: 27 })).toEqual([]);
   });
 });
+
