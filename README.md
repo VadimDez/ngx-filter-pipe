@@ -75,7 +75,7 @@ import { Component } from '@angular/core';
           <li *ngFor="let user of users | filterBy: userFilter">{{ user.name }}</li>
           
           <!-- in case you want to show empty message -->
-          <li *ngIf="(users | filterBy: userFilter.name).length === 0">No matching elements</li>
+          <li *ngIf="(users | filterBy: userFilter).length === 0">No matching elements</li>
         </ul>
     </div>  
   `
