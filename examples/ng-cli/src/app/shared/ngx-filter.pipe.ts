@@ -37,7 +37,16 @@ export class FilterPipe {
           continue;
         }
 
-        if (!value.hasOwnProperty(key) && !Object.getOwnPropertyDescriptor(Object.getPrototypeOf(value), key)) {
+        let walker = value;
+        let found = false;
+        do {
+          if (walker.hasOwnProperty(key) || Object.getOwnPropertyDescriptor(walker, key)) {
+            found = true;
+            break;
+          }
+        } while (walker = Object.getPrototypeOf(walker));
+
+        if (!found) {
           return false;
         }
 
