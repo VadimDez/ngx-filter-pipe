@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { FilterPipeModule } from './shared';
+import { FilterPipeModule } from './shared/ngx-filter-pipe';
 import { MDL } from './shared/mdl';
 
 @NgModule({
