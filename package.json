@@ -1,6 +1,6 @@
 {
   "name": "ngx-filter-pipe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular 2+ pipeline for filtering arrays",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "e2e": "protractor",
     "minify": "uglifyjs ./dist/app/shared/ngx-filter.pipe.js --compress --mangle --output ./ngx-filter.pipe.min.js --source-map ./ngx-filter.pipe.min.js.map",
     "build": "rimraf dist && tsc -p tsconfig-esm.json && rollup -c && rollup -c --environment MINIFY && ngc -p tsconfig.json",
-    "copy": "cp -R ./examples/ng-cli/src/app/order-pipe/ ./src/"
+    "copy": "cp -R ./examples/ng-cli/src/app/shared/ngx-filter-pipe/ ./src/"
   },
   "repository": {
     "type": "git",

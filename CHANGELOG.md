@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+* [[#46](https://github.com/VadimDez/ngx-filter-pipe/issues/46)] - Filter by property/method on prototype chain.
+* [[#47](https://github.com/VadimDez/ngx-filter-pipe/pull/47)] - walk the prototype chain to check if field/property exists.
+
 ## 1.0.0
 * [[#36](https://github.com/VadimDez/ngx-filter-pipe/issues/36)] - Changed name tp `ngx-filter-pipe`.
 * [[#38](https://github.com/VadimDez/ngx-filter-pipe/issues/38)] - Added UMD bundle.

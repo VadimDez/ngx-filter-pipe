@@ -100,6 +100,36 @@ describe('Pipe: FilterPipe', () => {
     expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
   });
 
+  it('should get value from getter defined in class ancestor', () => {
+    class User {
+      firstName: string;
+      lastName: string;
+
+      constructor(first: string, last: string) {
+        this.firstName = first;
+        this.lastName = last;
+      }
+
+      get name() {
+        return `${ this.firstName } ${ this.lastName }`;
+      }
+    }
+
+    class UserEx extends User {
+
+    }
+
+    const userA = new UserEx('Abc', '123');
+    const objects = [
+      userA,
+      new UserEx('Qwe', '123')
+    ];
+
+    expect(pipe.transform(objects, { name: '123' })).toEqual(objects);
+    expect(pipe.transform(objects, { name: 'Abc 123' })).toEqual([userA]);
+    expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
+  });
+
   it('should filter by empty filter string', () => {
     const objects = [
       'test',
@@ -224,5 +254,23 @@ describe('Pipe: FilterPipe', () => {
     expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 31 })).toEqual([]);
     expect(pipe.transform(objects, { languages: { $or: ['English'] }, age: 27 })).toEqual([]);
   });
-});
 
+  it('should filter values with space', () => {
+    const values = [
+      'John Writer'
+    ];
+
+    expect(pipe.transform(values, 'John')).toEqual(values);
+    expect(pipe.transform(values, 'John W')).toEqual(values);
+  });
+
+  it('should filter objects that have strings with spaces', () => {
+    const objects = [
+      { name: 'John Writer' },
+      { name: 'John Writer2' }
+    ];
+
+    expect(pipe.transform(objects , { name: 'John' })).toEqual(objects);
+    expect(pipe.transform(objects , { name: 'John w' })).toEqual(objects);
+  })
+});

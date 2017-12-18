@@ -37,7 +37,16 @@ export class FilterPipe {
           continue;
         }
 
-        if (!value.hasOwnProperty(key) && !Object.getOwnPropertyDescriptor(Object.getPrototypeOf(value), key)) {
+        let walker = value;
+        let found = false;
+        do {
+          if (walker.hasOwnProperty(key) || Object.getOwnPropertyDescriptor(walker, key)) {
+            found = true;
+            break;
+          }
+        } while (walker = Object.getPrototypeOf(walker));
+
+        if (!found) {
           return false;
         }
 
@@ -74,7 +83,6 @@ export class FilterPipe {
     return (value: any) => {
       let hasMatch = false;
       const length = filter.length;
-      const isArray = value instanceof Array;
 
       const arrayComparison = (i) => {
         return value.indexOf(filter[i]) !== -1;
@@ -82,7 +90,7 @@ export class FilterPipe {
       const otherComparison = (i) => {
         return value === filter[i];
       };
-      const comparison = isArray ? arrayComparison : otherComparison;
+      const comparison = Array.isArray(value) ? arrayComparison : otherComparison;
 
       for (let i = 0; i < length; i++) {
         if (comparison(i)) {
