@@ -8,6 +8,7 @@
     "build": "ng build",
     "prod": "ng build --prod --base-href ./",
     "test": "ng test --watch=false",
+    "test:watch": "ng test --watch=true",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "gh-pages": "ngh --message=\"update\" --dir ./dist"
