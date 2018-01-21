@@ -1,7 +1,7 @@
 /**
  * Created by vadimdez on 28/06/16.
  */
-import { Pipe, Injectable } from '@angular/core';
+import { Pipe, Injectable, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'filterBy',
@@ -9,7 +9,7 @@ import { Pipe, Injectable } from '@angular/core';
 })
 
 @Injectable()
-export class FilterPipe {
+export class FilterPipe implements PipeTransform {
 
   private filterByString(filter) {
     if (filter) {
