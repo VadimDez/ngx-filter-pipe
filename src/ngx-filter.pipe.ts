@@ -1,7 +1,7 @@
 /**
  * Created by vadimdez on 28/06/16.
  */
-import { Pipe, Injectable, PipeTransform} from '@angular/core';
+import { Pipe, Injectable, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'filterBy',
