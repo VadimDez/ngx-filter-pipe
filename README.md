@@ -144,6 +144,25 @@ Result:
 <div>Italian</div>
 ```
 
+### Use FilterPipe in a component
+
+Inject `FilterPipe` into your component and use it:
+
+```ts
+class AppComponent {
+  objects = [
+    { name: 'John' },
+    { name: 'Nick' },
+    { name: 'Jane' }
+  ];
+  
+  constructor(private filter: FilterPipe) {
+    let result = this.filter.transform(this.objects, { name: 'J' });
+    console.log(result); // [{ name: 'John' }, { name: 'Jane' }]
+  }
+}
+```
+
 ## Test
 
 Run tests
