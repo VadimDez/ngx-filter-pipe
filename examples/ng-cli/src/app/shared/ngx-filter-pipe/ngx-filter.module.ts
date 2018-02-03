@@ -6,6 +6,7 @@ import { FilterPipe } from './ngx-filter.pipe';
 
 @NgModule({
   declarations: [FilterPipe],
+  providers: [FilterPipe],
   exports: [FilterPipe]
 })
 

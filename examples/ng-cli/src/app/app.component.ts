@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilterPipe } from './shared/ngx-filter-pipe/ngx-filter.pipe';
 
 class User {
   firstName: string;
@@ -85,4 +86,9 @@ export class AppComponent {
     new User('Mario', 'Rossi')
   ];
   objectsWithGettersFilter: any = { name: null };
+
+  constructor(private filter: FilterPipe) {
+    // Use filter pipe in your component
+    console.log(filter.transform(this.objects, { test: 'value' }));
+  }
 }
