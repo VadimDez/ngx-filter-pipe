@@ -3,6 +3,25 @@
 ## 1.0.2
 * [[#50](https://github.com/VadimDez/ngx-filter-pipe/issues/50)] - How to call filterPipe transform from Component ?
 
+### Use FilterPipe in a component
+
+Inject `FilterPipe` into your component and use it:
+
+```ts
+class AppComponent {
+  objects = [
+    { name: 'John' },
+    { name: 'Nick' },
+    { name: 'Jane' }
+  ];
+  
+  constructor(private filter: FilterPipe) {
+    let result = this.filter.transform(this.objects, { name: 'J' });
+    console.log(result); // [{ name: 'John' }, { name: 'Jane' }]
+  }
+}
+```
+
 ## 1.0.1
 * [[#46](https://github.com/VadimDez/ngx-filter-pipe/issues/46)] - Filter by property/method on prototype chain.
 * [[#47](https://github.com/VadimDez/ngx-filter-pipe/pull/47)] - walk the prototype chain to check if field/property exists.
