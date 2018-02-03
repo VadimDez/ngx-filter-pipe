@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.2
+* [[#50](https://github.com/VadimDez/ngx-filter-pipe/issues/50)] - How to call filterPipe transform from Component ?
+
 ## 1.0.1
 * [[#46](https://github.com/VadimDez/ngx-filter-pipe/issues/46)] - Filter by property/method on prototype chain.
 * [[#47](https://github.com/VadimDez/ngx-filter-pipe/pull/47)] - walk the prototype chain to check if field/property exists.
