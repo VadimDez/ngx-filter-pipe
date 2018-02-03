@@ -1,26 +1,6 @@
 import { Component } from '@angular/core';
 import { FilterPipe } from './shared/ngx-filter-pipe/ngx-filter.pipe';
-
-class User {
-  firstName: string;
-  lastName: string;
-
-  constructor(first: string, last: string) {
-    this.firstName = first;
-    this.lastName = last;
-
-    // you have to bind function in case you want to filter by getName function
-    this.getName = this.getName.bind(this);
-  }
-
-  getName() {
-    return `${ this.firstName } ${ this.lastName }`;
-  }
-
-  get name() {
-    return `${ this.firstName } ${ this.lastName }`;
-  }
-}
+import { User } from './user';
 
 @Component({
   selector: 'app-root',
