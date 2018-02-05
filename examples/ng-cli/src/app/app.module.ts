@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
 import { FilterPipeModule } from './shared/ngx-filter-pipe';
 import { MDL } from './shared/mdl';
+import { AppComponent } from './app.component';
+
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    FilterPipeModule
-  ],
   declarations: [
     AppComponent,
     MDL
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    
+    FilterPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

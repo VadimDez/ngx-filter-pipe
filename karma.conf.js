@@ -1,46 +1,39 @@
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/0.13/config/configuration-file.html
+
 module.exports = function (config) {
   config.set({
-    basePath: '..',
-    frameworks: ['jasmine'],
+    basePath: '',
+    frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher')
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular/cli/plugins/karma')
     ],
-    customLaunchers: {
-      // chrome setup for travis CI using chromium
-      Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
+    client:{
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
-      { pattern: 'dist/vendor/es6-shim/es6-shim.js', included: true, watched: false },
-      // Reflect and Zone.js
-
-      { pattern: 'node_modules/reflect-metadata/Reflect.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/zone.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/long-stack-trace-zone.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/proxy.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/sync-test.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/jasmine-patch.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/async-test.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/fake-async-test.js', included: true, watched: false },
-
-      { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: true, watched: false },
-      { pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: false },
-      { pattern: 'node_modules/zone.js/dist/async-test.js', included: true, watched: false },
-
-      { pattern: 'karma-test-shim.js', included: true, watched: true },
-
-      // Distribution folder.
-      { pattern: 'dist/**/*', included: false, watched: true }
+      { pattern: './src/test.ts', watched: false }
     ],
-    exclude: [
-      // Vendor packages might include spec files. We don't want to use those.
-      'dist/vendor/**/*.spec.js'
-    ],
-    preprocessors: {},
-    reporters: ['progress'],
+    preprocessors: {
+      './src/test.ts': ['@angular/cli']
+    },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
+    },
+    angularCli: {
+      environment: 'dev'
+    },
+    reporters: config.angularCli && config.angularCli.codeCoverage
+              ? ['progress', 'coverage-istanbul']
+              : ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
