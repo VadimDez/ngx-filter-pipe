@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
+
 import { FilterPipe } from './shared/ngx-filter-pipe/ngx-filter.pipe';
 import { User } from './user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
   objectsFilter = { test: 'value', num: 1, bool: true, nested: { val: 1 } };
   objects = [

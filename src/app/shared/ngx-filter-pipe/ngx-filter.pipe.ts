@@ -75,11 +75,8 @@ export class FilterPipe implements PipeTransform {
 
   /**
    * Filter value by $or
-   *
-   * @param filter
-   * @returns {(value:any)=>boolean}
    */
-  private filterByOr(filter: any[]) {
+  private filterByOr(filter: any[]): (value: any) => boolean {
     return (value: any) => {
       let hasMatch = false;
       const length = filter.length;
@@ -105,21 +102,16 @@ export class FilterPipe implements PipeTransform {
 
   /**
    * Checks function's value if type is function otherwise same value
-   * @param value
-   * @returns {any}
    */
-  private getValue(value: any) {
+  private getValue(value: any): any {
     return typeof value === 'function' ? value() : value;
   }
 
   /**
    * Defatul filterDefault function
-   *
-   * @param filter
-   * @returns {(value:any)=>boolean}
    */
-  private filterDefault(filter) {
-    return value => {
+  private filterDefault(filter: any): (value: any) => boolean {
+    return (value: any) => {
       return filter === undefined || filter == value;
     }
   }
