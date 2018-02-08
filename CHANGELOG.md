@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.0.0
+* [[#51](https://github.com/VadimDez/ngx-filter-pipe/pull/51)] - Restructure
+* [[#42](https://github.com/VadimDez/ngx-filter-pipe/issues/42)] - AOT support
+* [[#44](https://github.com/VadimDez/ngx-filter-pipe/issues/44)] - Angular 5
+
+### Breaking change
+
+*Bundle location is changed, therefore SYSTEMJS config should be updated*
+
+Append to `map`
+```js
+var map = {
+    ...
+    'ngx-filter-pipe': 'node_modules/ngx-filter-pipe/bundles'
+}
+```
+and then add to `packages`
+
+```js
+var packages = {
+    ...
+    'ngx-filter-pipe': { defaultExtension: 'js' }
+}
+```
+
+
 ## 1.0.2
 * [[#50](https://github.com/VadimDez/ngx-filter-pipe/issues/50)] - How to call filterPipe transform from Component ?
 
