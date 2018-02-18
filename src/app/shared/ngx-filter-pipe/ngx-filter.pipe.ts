@@ -5,7 +5,7 @@ import { Pipe, Injectable, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'filterBy',
-  pure: true
+  pure: false
 })
 
 @Injectable()
