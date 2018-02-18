@@ -1,6 +1,6 @@
 {
   "name": "ngx-filter-pipe",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Angular 5+ pipeline for filtering arrays",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",

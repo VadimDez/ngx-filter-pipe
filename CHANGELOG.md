@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0
+* [[#55](https://github.com/VadimDez/ngx-filter-pipe/pull/55)] - Made pipe impure to detect changes in arrays and objects
+* [[#54](https://github.com/VadimDez/ngx-filter-pipe/issues/54)] - Change detection not firing with object
+
+
 ## 2.0.0
 * [[#51](https://github.com/VadimDez/ngx-filter-pipe/pull/51)] - Restructure
 * [[#42](https://github.com/VadimDez/ngx-filter-pipe/issues/42)] - AOT support
