@@ -1,4 +1,4 @@
-<h1 align="center">Angular2+ Filter Pipe</h1>
+<h1 align="center">Angular5+ Filter Pipe</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/ng2-filter-pipe">
@@ -24,7 +24,7 @@
 
 > Filter arrays
  
-Angular 2+ pipeline for filtering arrays.
+Angular 5+ pipeline for filtering arrays.
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/3748453/23809236/3276cf26-05cd-11e7-94f7-b4078104adbd.gif" width="300">
@@ -39,6 +39,7 @@ Angular 2+ pipeline for filtering arrays.
 ```
 npm install ngx-filter-pipe --save
 ```
+*For Angular lower than 5 use version `1.0.2`*
 
 ## Usage
 
