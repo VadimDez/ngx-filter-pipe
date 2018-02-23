@@ -272,5 +272,19 @@ describe('Pipe: FilterPipe', () => {
 
     expect(pipe.transform(objects , { name: 'John' })).toEqual(objects);
     expect(pipe.transform(objects , { name: 'John w' })).toEqual(objects);
-  })
+  });
+
+  it('should not modify initial value', () => {
+    let objects = [
+      { name: 'asd' },
+      { name: 'aad' }
+    ];
+
+    pipe.transform(objects , { name: 'aa' });
+
+    expect(objects).toEqual([
+      { name: 'asd' },
+      { name: 'aad' }
+    ]);
+  });
 });
