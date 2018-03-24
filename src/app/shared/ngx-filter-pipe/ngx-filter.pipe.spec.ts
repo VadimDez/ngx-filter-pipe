@@ -287,4 +287,17 @@ describe('Pipe: FilterPipe', () => {
       { name: 'aad' }
     ]);
   });
+
+  // describe('search in string', () => {
+  //   const objects = ['Item 1', 'Item 2', 'Item 22', 'Item 123', 'Item 4'];
+  //   const result = ['Item 2', 'Item 22', 'Item 123'];
+  //
+  //   it('should return string that contain the number', () => {
+  //     expect(pipe.transform(objects, 2)).toEqual(result);
+  //   });
+  //
+  //   it('should return string that contain the string number', () => {
+  //     expect(pipe.transform(objects, '2')).toEqual(result);
+  //   });
+  // });
 });
