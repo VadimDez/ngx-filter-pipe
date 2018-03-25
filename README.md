@@ -108,7 +108,7 @@ In your template:
 </div>
 ```
 
-Result:
+Result will be:
 ```html
 <div>English</div>
 <div>German</div>
