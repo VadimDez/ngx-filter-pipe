@@ -34,6 +34,19 @@ Angular 5+ pipeline for filtering arrays.
 
 [https://vadimdez.github.io/ngx-filter-pipe/](https://vadimdez.github.io/ngx-filter-pipe/)
 
+##### In HTML template
+
+```
+{{ collection | filterBy: searchTerm }}
+```
+
+### Arguments
+
+| Param | Type | Default | Details |
+| --- | --- | --- | --- |
+| collection | `array` | - | The collection to filter |
+| searchTerm  | `string` or `number` or `object` or `array` or `function` | - | Predicate used to filter items from `collection` |
+
 ## Install
 
 ```
@@ -41,9 +54,11 @@ npm install ngx-filter-pipe --save
 ```
 *For Angular lower than 5 use version `1.0.2`*
 
-## Usage
+## Setup
 
 In case you're using ```SystemJS``` - see configuration [here](https://github.com/VadimDez/ngx-filter-pipe/blob/master/SYSTEMJS.md).
+
+## Usage
 
 Import `FilterPipeModule` to your module
 
