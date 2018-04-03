@@ -39,11 +39,14 @@ export class AppComponent {
     }
   ];
 
-  stringsFilter = 'a';
+  stringsFilter = '';
   strings = [
-    'asd',
-    'qwe',
-    'zxc'
+    'item 6',
+    'item 5',
+    'item 4',
+    'item 1',
+    'item 2',
+    'item 3',
   ];
 
   numbersFilter = 1;
@@ -69,6 +72,6 @@ export class AppComponent {
 
   constructor(private filter: FilterPipe) {
     // Use filter pipe in your component
-    console.log(filter.transform(this.objects, { test: 'value' }));
+    console.log(filter.transform(this.objects, { searchTerm: {test: "value"}}));
   }
 }

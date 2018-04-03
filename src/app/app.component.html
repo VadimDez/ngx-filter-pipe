@@ -20,7 +20,7 @@
             </div>
           </div>
 
-          <div class="mdl-grid">
+         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--12-col">
               <h4>Objects</h4>
             </div>
@@ -97,7 +97,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let item of objects | filterBy: objectsFilter">
+                  <tr *ngFor="let item of objects | filterBy: {searchTerm: objectsFilter}">
                     <td class="mdl-data-table__cell--non-numeric">{{ item | json }}</td>
                   </tr>
                   </tbody>
@@ -105,6 +105,93 @@
               </div>
             </div>
           </div>
+
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>Objects with specific variable filter</h4>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+              <h5>Before filtering</h5>
+              {{ objects | json }}
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+              <h5>After filtering (targetting 'num')</h5>
+              Filters:
+              <div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="object.test"
+                         [(ngModel)]="objectsFilter.test"
+                         [value]="objectsFilter.test"
+                  >
+                  <label class="mdl-textfield__label" for="object.test">object.test</label>
+                </div>
+              </div>
+              <div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="object.num"
+                         [(ngModel)]="objectsFilter.num"
+                         [value]="objectsFilter.num"
+                  >
+                  <label class="mdl-textfield__label" for="object.num">object.num</label>
+                </div>
+              </div>
+              <div>
+                <form id="objectFilter__bool">
+                  <div>
+                    <label>object.bool</label>
+                  </div>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option1-true">
+                    <input [(ngModel)]="objectsFilter.bool"
+                           [value]="true"
+                           type="radio"
+                           id="option1-true"
+                           class="mdl-radio__button"
+                           name="options"
+                           checked
+                    >
+                    <span class="mdl-radio__label">True</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option1-false">
+                    <input [(ngModel)]="objectsFilter.bool"
+                           [value]="false"
+                           type="radio"
+                           id="option1-false"
+                           class="mdl-radio__button"
+                           name="options"
+                    >
+                    <span class="mdl-radio__label">False</span>
+                  </label>
+                </form>
+              </div>
+              <div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input"
+                         type="text"
+                         id="object.nested.val"
+                         [(ngModel)]="objectsFilter.nested.val"
+                         [value]="objectsFilter.nested.val"
+                  >
+                  <label class="mdl-textfield__label" for="object.num">object.nested.val</label>
+                </div>
+              </div>
+
+              <div>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Object</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of objects | filterBy: {searchTerm: objectsFilter, fields: ['num']}">
+                    <td class="mdl-data-table__cell--non-numeric">{{ item | json }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-tablet mdl-cell--1-offset-desktop">
@@ -139,7 +226,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let string of strings | filterBy: stringsFilter">
+                  <tr *ngFor="let string of strings | filterBy: {searchTerm: stringsFilter}">
                     <td>{{ string }}</td>
                   </tr>
                   </tbody>
@@ -180,7 +267,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let number of numbers | filterBy: numbersFilter">
+                  <tr *ngFor="let number of numbers | filterBy: {searchTerm: numbersFilter}">
                     <td>{{ number }}</td>
                   </tr>
                   </tbody>
@@ -239,7 +326,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let bool of booleans | filterBy: boolFilter">
+                  <tr *ngFor="let bool of booleans | filterBy: {searchTerm: boolFilter}">
                     <td>{{ bool }}</td>
                   </tr>
                   </tbody>
@@ -293,7 +380,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let object of objectsWithGetters | filterBy: objectsWithGettersFilter">
+                  <tr *ngFor="let object of objectsWithGetters | filterBy: {searchTerm: objectsWithGettersFilter}">
                     <td>{{ object | json }}</td>
                   </tr>
                   </tbody>
