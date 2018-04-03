@@ -14,20 +14,20 @@ describe('Pipe: FilterPipe', () => {
   });
 
   it('filters array of strings', () => {
-    expect(pipe.transform(['a', 'b', 'c'], 'a')).toEqual(['a']);
+    expect(pipe.transform(['a', 'b', 'c'], { searchTerm: 'a' })).toEqual(['a']);
   });
 
   it('filters array of strings without any match', () => {
-    expect(pipe.transform(['a', 'b', 'c'], 'x')).toEqual([]);
+    expect(pipe.transform(['a', 'b', 'c'], { searchTerm: 'x' })).toEqual([]);
   });
 
   it('filters array of strings with repeated element', () => {
     let arrayContainingA = ['a', 'ba', 'ca'];
-    expect(pipe.transform(arrayContainingA, 'a')).toEqual(arrayContainingA);
+    expect(pipe.transform(arrayContainingA, { searchTerm: 'a' })).toEqual(arrayContainingA);
   });
 
   it('filters array of numbers', () => {
-    expect(pipe.transform([1, 2, 3, 11], 1)).toEqual([1]);
+    expect(pipe.transform([1, 2, 3, 11], { searchTerm: 'a' })).toEqual([1]);
   });
 
   it('filters array of objects', () => {
@@ -36,14 +36,14 @@ describe('Pipe: FilterPipe', () => {
       { value: 2 },
       { value: 3 },
       { value: 111 }
-    ], { value: 1 })).toEqual([{ value: 1 }]);
+    ], { searchTerm: { value: 1 } } )).toEqual([{ value: 1 }]);
 
     expect(pipe.transform([
       { value: 'a' },
       { value: 'b' },
       { value: 'c' },
       { value: 'abc' }
-    ], { value: 'a' })).toEqual([{ value: 'a' }, { value: 'abc' }]);
+    ], { searchTerm: { value: 'a' } })).toEqual([{ value: 'a' }, { value: 'abc' }]);
   });
 
   it('filters array of objects with nested objects', () => {
@@ -52,7 +52,7 @@ describe('Pipe: FilterPipe', () => {
       { value: 'b', nested: { number: 2 } },
       { value: 'c', nested: { number: 1 } },
       { value: 'abc', nested: { number: 2 } }
-    ], { value: 'a', nested: { number: 2 } }))
+    ], {searchTerm: { value: 'a', nested: { number: 2 } }}))
       .toEqual([{ value: 'abc', nested: { number: 2 } }]);
   });
 
@@ -62,7 +62,7 @@ describe('Pipe: FilterPipe', () => {
       { value: 'b', nested: { number: 1 } },
       { value: 'c', nested: { number: 1 } },
       { value: 'abc' }
-    ], { value: 'a', nested: { number: 1 } }))
+    ], {searchTerm: { value: 'a', nested: { number: 1 } }}))
       .toEqual([]);
   });
 
@@ -72,7 +72,7 @@ describe('Pipe: FilterPipe', () => {
         value: 'a'
       }
     ];
-    expect(pipe.transform(objects, [])).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: []})).toEqual(objects);
   });
 
   it('should get value from getter', () => {
@@ -95,9 +95,9 @@ describe('Pipe: FilterPipe', () => {
       new User('Qwe', '123')
     ];
 
-    expect(pipe.transform(objects, { name: '123' })).toEqual(objects);
-    expect(pipe.transform(objects, { name: 'Abc 123' })).toEqual([userA]);
-    expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
+    expect(pipe.transform(objects, {searchTerm: { name: '123' }})).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: { name: 'Abc 123' }})).toEqual([userA]);
+    expect(pipe.transform(objects, {searchTerm: { name: 'Qwe123' }})).toEqual([]);
   });
 
   it('should get value from getter defined in class ancestor', () => {
@@ -125,9 +125,9 @@ describe('Pipe: FilterPipe', () => {
       new UserEx('Qwe', '123')
     ];
 
-    expect(pipe.transform(objects, { name: '123' })).toEqual(objects);
-    expect(pipe.transform(objects, { name: 'Abc 123' })).toEqual([userA]);
-    expect(pipe.transform(objects, { name: 'Qwe123' })).toEqual([]);
+    expect(pipe.transform(objects, {searchTerm: { name: '123' }})).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: { name: 'Abc 123' }})).toEqual([userA]);
+    expect(pipe.transform(objects, {searchTerm: { name: 'Qwe123' }})).toEqual([]);
   });
 
   it('should filter by empty filter string', () => {
@@ -138,7 +138,7 @@ describe('Pipe: FilterPipe', () => {
       'test3'
     ];
 
-    expect(pipe.transform(objects, '')).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: ''})).toEqual(objects);
     expect(pipe.transform(objects, null)).toEqual(objects);
     expect(pipe.transform(objects, void 0)).toEqual(objects);
   });
@@ -149,7 +149,7 @@ describe('Pipe: FilterPipe', () => {
       null
     ];
 
-    expect(pipe.transform(objects, '')).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: ''})).toEqual(objects);
     expect(pipe.transform(objects, null)).toEqual(objects);
     expect(pipe.transform(objects, void 0)).toEqual(objects);
   });
@@ -164,7 +164,7 @@ describe('Pipe: FilterPipe', () => {
     ];
 
     const fn = (object: any) => object.num < 2 || object.nested.b === 'was';
-    expect(pipe.transform(objects, fn)).toEqual([objects[0], objects[1], objects[3]]);
+    expect(pipe.transform(objects, {searchTerm: fn})).toEqual([objects[0], objects[1], objects[3]]);
   });
 
   it('should work with different types', () => {
@@ -175,7 +175,7 @@ describe('Pipe: FilterPipe', () => {
     ];
     const filter = { num: '2' };
 
-    expect(pipe.transform(objects, filter)).toEqual([objects[1]]);
+    expect(pipe.transform(objects, {searchTerm: filter})).toEqual([objects[1]]);
   });
 
   it('should filter by two variables', () => {
@@ -186,9 +186,9 @@ describe('Pipe: FilterPipe', () => {
     ];
     const filter = { name: 'Mario', code: 'Mario' };
 
-    expect(pipe.transform(objects, filter)).toEqual([objects[0]]);
+    expect(pipe.transform(objects, {searchTerm: filter})).toEqual([objects[0]]);
 
-    expect(pipe.transform(objects, { name: 'Guy', code: 'Guy' })).toEqual([]);
+    expect(pipe.transform(objects, {searchTerm: { name: 'Guy', code: 'Guy' }})).toEqual([]);
   });
 
   it('should filter by 0', () => {
@@ -199,8 +199,8 @@ describe('Pipe: FilterPipe', () => {
     ];
     const filter = { age: 0 };
 
-    expect(pipe.transform(objects, filter)).toEqual([objects[0]]);
-    expect(pipe.transform([1, 2, 0], 0)).toEqual([0]);
+    expect(pipe.transform(objects, {searchTerm: filter})).toEqual([objects[0]]);
+    expect(pipe.transform([1, 2, 0], {searchTerm: 0})).toEqual([0]);
   });
 
   it('should filter array by string', () => {
@@ -213,7 +213,7 @@ describe('Pipe: FilterPipe', () => {
 
     const filter = { languages: 'English' };
 
-    expect(pipe.transform(objects, filter)).toEqual([objects[0], objects[1], objects[3]]);
+    expect(pipe.transform(objects, {searchTerm: filter})).toEqual([objects[0], objects[1], objects[3]]);
   });
 
   it('should filter array by using $or operator', () => {
@@ -224,7 +224,7 @@ describe('Pipe: FilterPipe', () => {
       { languages: ['German', 'English'] }
     ];
 
-    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }})).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English', 'German'] }}})).toEqual(objects);
   });
 
   it('should filter string by using $or operator', () => {
@@ -233,14 +233,14 @@ describe('Pipe: FilterPipe', () => {
       { languages: 'German' }
     ];
 
-    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }})).toEqual(objects);
-    expect(pipe.transform(objects, { languages: { $or: ['English'] }})).toEqual([objects[0]]);
-    expect(pipe.transform(objects, { languages: { $or: ['asd'] }})).toEqual([]);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English', 'German'] }}})).toEqual(objects);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English'] }}})).toEqual([objects[0]]);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['asd'] }}})).toEqual([]);
   });
 
   it('should filter array of string by using $or operator', () => {
     const objects = [ 'English', 'German' ];
-    expect(pipe.transform(objects, { $or: ['English'] })).toEqual([objects[0]]);
+    expect(pipe.transform(objects, {searchTerm: { $or: ['English'] }})).toEqual([objects[0]]);
   });
 
   it('should filter by using $or operator and another field', () => {
@@ -249,10 +249,10 @@ describe('Pipe: FilterPipe', () => {
       { languages: 'German', age: 27 }
     ];
 
-    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 27 })).toEqual([objects[1]]);
-    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 30 })).toEqual([objects[0]]);
-    expect(pipe.transform(objects, { languages: { $or: ['English', 'German'] }, age: 31 })).toEqual([]);
-    expect(pipe.transform(objects, { languages: { $or: ['English'] }, age: 27 })).toEqual([]);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English', 'German'] }, age: 27 }})).toEqual([objects[1]]);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English', 'German'] }, age: 30 }})).toEqual([objects[0]]);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English', 'German'] }, age: 31 }})).toEqual([]);
+    expect(pipe.transform(objects, {searchTerm: { languages: { $or: ['English'] }, age: 27 }})).toEqual([]);
   });
 
   it('should filter values with space', () => {
@@ -260,8 +260,8 @@ describe('Pipe: FilterPipe', () => {
       'John Writer'
     ];
 
-    expect(pipe.transform(values, 'John')).toEqual(values);
-    expect(pipe.transform(values, 'John W')).toEqual(values);
+    expect(pipe.transform(values, {searchTerm: 'John'})).toEqual(values);
+    expect(pipe.transform(values, {searchTerm: 'John W'})).toEqual(values);
   });
 
   it('should filter objects that have strings with spaces', () => {
@@ -270,8 +270,8 @@ describe('Pipe: FilterPipe', () => {
       { name: 'John Writer2' }
     ];
 
-    expect(pipe.transform(objects , { name: 'John' })).toEqual(objects);
-    expect(pipe.transform(objects , { name: 'John w' })).toEqual(objects);
+    expect(pipe.transform(objects , {searchTerm: { name: 'John' }})).toEqual(objects);
+    expect(pipe.transform(objects , {searchTerm: { name: 'John w' }})).toEqual(objects);
   });
 
   it('should not modify initial value', () => {
@@ -280,7 +280,7 @@ describe('Pipe: FilterPipe', () => {
       { name: 'aad' }
     ];
 
-    pipe.transform(objects , { name: 'aa' });
+    pipe.transform(objects , {searchTerm: { name: 'aa' }});
 
     expect(objects).toEqual([
       { name: 'asd' },

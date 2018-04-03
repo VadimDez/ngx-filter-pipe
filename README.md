@@ -68,12 +68,12 @@ And use pipe in your component
 import { Component } from '@angular/core';
  
 @Component({
-  selector: 'example-app',
+  selector: 'example-app', 
   template: `
     <div>
         <input type="text" [(ngModel)]="userFilter.name" placeholder="name">
         <ul>
-          <li *ngFor="let user of users | filterBy: userFilter">{{ user.name }}</li>
+          <li *ngFor="let user of users | filterBy: { searchTerm: userFilter }">{{ user.name }}</li>
           
           <!-- in case you want to show empty message -->
           <li *ngIf="(users | filterBy: userFilter).length === 0">No matching elements</li>
@@ -87,6 +87,33 @@ export class AppComponent {
   userFilter: any = { name: '' };
 }
 ```
+
+You can also add Strict usage (Match whole word) and pass specific varibles you wish to be filtered. 
+
+```ts
+import { Component } from '@angular/core';
+ 
+@Component({
+  selector: 'example-app', 
+  template: `
+    <div>
+        <input type="text" [(ngModel)]="userFilter.firstName" placeholder="name">
+        <ul>
+          <li *ngFor="let user of users | filterBy: { searchTerm: userFilter, strict: true, fields: ['firstName'] }">{{ user.firstName }}</li>
+          
+          <!-- in case you want to show empty message -->
+          <li *ngIf="(users | filterBy: userFilter).length === 0">No matching elements</li>
+        </ul>
+    </div>  
+  `
+})
+ 
+export class AppComponent {
+  users: any[] = [{ firstName: 'John', lastName: 'smith' }, { firstName: 'Jane', lastName: 'beechems' }, { firstName: 'Mario', lastName: 'man' }];
+  userFilter: any = { name: '' };
+}
+```
+
 
 ### $or matching
 Use `$or` to filter by more then one values.
@@ -103,7 +130,7 @@ const filter = { $or: ['German', 'English'] };
 
 In your template:
 ```html
-<div *ngFor="let language of languages | filterBy: filter">
+<div *ngFor="let language of languages | filterBy: { searchTerm: filter }">
   {{ language }}
 </div>
 ```
@@ -134,7 +161,7 @@ const filter = {
 
 In your template:
 ```html
-<div *ngFor="let object of languages | filterBy: filter">
+<div *ngFor="let object of languages | filterBy: { searchTerm: filter }">
   {{ object.language }}
 </div>
 ```
@@ -158,7 +185,7 @@ class AppComponent {
   ];
   
   constructor(private filter: FilterPipe) {
-    let result = this.filter.transform(this.objects, { name: 'J' });
+    let result = this.filter.transform(this.objects, { searchTerm: { name: 'J' } });
     console.log(result); // [{ name: 'John' }, { name: 'Jane' }]
   }
 }
