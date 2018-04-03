@@ -177,6 +177,11 @@ export class FilterPipe implements PipeTransform {
   }
 
   transform(array: any[], filter: { searchTerm: any, strict?: boolean, fields?: Array<any> }): any {
+
+    if(filter && filter.searchTerm){}else{
+      filter = {searchTerm: ""}
+    }
+
     const type = typeof filter.searchTerm;
 
     if (!array) {
@@ -205,5 +210,6 @@ export class FilterPipe implements PipeTransform {
     }
 
     return array.filter(this.filterDefault(filter.searchTerm));
+
   }
 }
