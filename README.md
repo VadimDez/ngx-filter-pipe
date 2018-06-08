@@ -34,7 +34,11 @@ Angular 5+ pipeline for filtering arrays.
 
 [https://vadimdez.github.io/ngx-filter-pipe/](https://vadimdez.github.io/ngx-filter-pipe/)
 
+or see demo code
+
 [https://stackblitz.com/edit/ngx-filter-pipe](https://stackblitz.com/edit/ngx-filter-pipe)
+
+### Usage
 
 ##### In HTML template
 
