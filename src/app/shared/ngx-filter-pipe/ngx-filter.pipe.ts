@@ -11,66 +11,75 @@ import { Pipe, Injectable, PipeTransform } from '@angular/core';
 @Injectable()
 export class FilterPipe implements PipeTransform {
 
+  static isFoundOnWalking(value, key) {
+    let walker = value;
+    let found = false;
+    do {
+      if (walker.hasOwnProperty(key) || Object.getOwnPropertyDescriptor(walker, key)) {
+        found = true;
+        break;
+      }
+    } while (walker = Object.getPrototypeOf(walker));
+
+    return found;
+  }
+
+  static isNumber(value) {
+    return !isNaN(parseInt(value, 10)) && isFinite(value);
+  }
+
+  /**
+   * Checks function's value if type is function otherwise same value
+   */
+  static getValue(value: any): any {
+    return typeof value === 'function' ? value() : value;
+  }
+
   private filterByString(filter) {
     if (filter) {
       filter = filter.toLowerCase();
     }
-    return value => {
-      return !filter || (value ? ('' + value).toLowerCase().indexOf(filter) !== -1 : false);
-    }
+    return value => !filter || (value ? ('' + value).toLowerCase().indexOf(filter) !== -1 : false);
   }
 
   private filterByBoolean(filter) {
-    return value => {
-      return Boolean(value) === filter;
-    }
+    return value => Boolean(value) === filter;
   }
 
   private filterByObject(filter) {
     return value => {
-      for (let key in filter) {
+      for (const key in filter) {
 
         if (key === '$or') {
-          if (!this.filterByOr(filter.$or)(this.getValue(value))) {
+          if (!this.filterByOr(filter.$or)(FilterPipe.getValue(value))) {
             return false;
           }
           continue;
         }
 
-        let walker = value;
-        let found = false;
-        do {
-          if (walker.hasOwnProperty(key) || Object.getOwnPropertyDescriptor(walker, key)) {
-            found = true;
-            break;
-          }
-        } while (walker = Object.getPrototypeOf(walker));
-
-        if (!found) {
+        if (!FilterPipe.isFoundOnWalking(value, key)) {
           return false;
         }
 
-        let val = this.getValue(value[key]);
-        const filterType = typeof filter[key];
-        let isMatching;
-
-        if (filterType === 'boolean') {
-          isMatching = this.filterByBoolean(filter[key])(val);
-        } else if (filterType === 'string') {
-          isMatching = this.filterByString(filter[key])(val);
-        } else if (filterType === 'object') {
-          isMatching = this.filterByObject(filter[key])(val);
-        } else {
-          isMatching = this.filterDefault(filter[key])(val);
-        }
-
-        if (!isMatching) {
+        if (!this.isMatching(filter[key], FilterPipe.getValue(value[key]))) {
           return false;
         }
       }
 
       return true;
+    };
+  }
+
+  private isMatching(filter, val) {
+    switch (typeof  filter) {
+      case 'boolean':
+        return this.filterByBoolean(filter)(val);
+      case 'string':
+        return this.filterByString(filter)(val);
+      case 'object':
+       return this.filterByObject(filter)(val);
     }
+    return this.filterDefault(filter)(val);
   }
 
   /**
@@ -78,75 +87,47 @@ export class FilterPipe implements PipeTransform {
    */
   private filterByOr(filter: any[]): (value: any) => boolean {
     return (value: any) => {
-      let hasMatch = false;
       const length = filter.length;
 
-      const arrayComparison = (i) => {
-        return value.indexOf(filter[i]) !== -1;
-      };
-      const otherComparison = (i) => {
-        return value === filter[i];
-      };
+      const arrayComparison = (i) => value.indexOf(filter[i]) !== -1;
+      const otherComparison = (i) => value === filter[i];
       const comparison = Array.isArray(value) ? arrayComparison : otherComparison;
 
       for (let i = 0; i < length; i++) {
         if (comparison(i)) {
-          hasMatch = true;
-          break;
+          return true;
         }
       }
 
-      return hasMatch;
+      return false;
     };
   }
 
   /**
-   * Checks function's value if type is function otherwise same value
-   */
-  private getValue(value: any): any {
-    return typeof value === 'function' ? value() : value;
-  }
-
-  /**
-   * Defatul filterDefault function
+   * Default filterDefault function
    */
   private filterDefault(filter: any): (value: any) => boolean {
-    return (value: any) => {
-      return filter === undefined || filter == value;
-    }
-  }
-
-  private isNumber(value) {
-    return !isNaN(parseInt(value, 10)) && isFinite(value);
+    return (value: any) => filter === undefined || filter == value;
   }
 
   transform(array: any[], filter: any): any {
-    const type = typeof filter;
-
     if (!array) {
       return array;
     }
 
-    if (type === 'boolean') {
-      return array.filter(this.filterByBoolean(filter));
+    switch (typeof filter) {
+      case 'boolean':
+        return array.filter(this.filterByBoolean(filter));
+      case 'string':
+        if (FilterPipe.isNumber(filter)) {
+          return array.filter(this.filterDefault(filter));
+        }
+        return array.filter(this.filterByString(filter));
+      case 'object':
+        return array.filter(this.filterByObject(filter));
+      case 'function':
+        return array.filter(filter);
     }
-
-    if (type === 'string') {
-      if (this.isNumber(filter)) {
-        return array.filter(this.filterDefault(filter));
-      }
-
-      return array.filter(this.filterByString(filter));
-    }
-
-    if (type === 'object') {
-      return array.filter(this.filterByObject(filter));
-    }
-
-    if (type === 'function') {
-      return array.filter(filter);
-    }
-
     return array.filter(this.filterDefault(filter));
   }
 }
