@@ -22,7 +22,7 @@ describe('Pipe: FilterPipe', () => {
   });
 
   it('filters array of strings with repeated element', () => {
-    let arrayContainingA = ['a', 'ba', 'ca'];
+    const arrayContainingA = ['a', 'ba', 'ca'];
     expect(pipe.transform(arrayContainingA, 'a')).toEqual(arrayContainingA);
   });
 
@@ -275,7 +275,7 @@ describe('Pipe: FilterPipe', () => {
   });
 
   it('should not modify initial value', () => {
-    let objects = [
+    const objects = [
       { name: 'asd' },
       { name: 'aad' }
     ];
@@ -298,6 +298,24 @@ describe('Pipe: FilterPipe', () => {
   //
   //   it('should return string that contain the string number', () => {
   //     expect(pipe.transform(objects, '2')).toEqual(result);
+  //   });
+  // });
+
+  // describe('filter nested array', () => {
+  //   it('should filter nested array', function () {
+  //     const list: any[] = [
+  //       {
+  //         listName: 'list1',
+  //         users: [ { name: 'John', surname: 'Riddle' }, { name: 'Mark', surname: 'Spancer' } ]
+  //       },
+  //       {
+  //         listName: 'list2',
+  //         users: [ { name: 'Mark', surname: 'Spancer' }, { name: 'John', surname: 'Riddle' } ]
+  //       }
+  //     ];
+  //     const filter = { users: { name: 'John' } };
+  //
+  //     expect(pipe.transform(list, filter)).toEqual(list);
   //   });
   // });
 });
