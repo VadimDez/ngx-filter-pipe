@@ -318,4 +318,15 @@ describe('Pipe: FilterPipe', () => {
   //     expect(pipe.transform(list, filter)).toEqual(list);
   //   });
   // });
+
+  // it('should filter null objects', () => {
+  //   const objects = [
+  //     { name: 'asd' },
+  //     { name: null }
+  //   ];
+  //
+  //   expect(pipe.transform(objects , { name: null })).toEqual([
+  //     { name: null }
+  //   ]);
+  // });
 });
