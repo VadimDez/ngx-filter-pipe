@@ -57,7 +57,7 @@ export class FilterPipe implements PipeTransform {
           continue;
         }
 
-        if (!FilterPipe.isFoundOnWalking(value, key)) {
+        if (!value || !FilterPipe.isFoundOnWalking(value, key)) {
           return false;
         }
 
