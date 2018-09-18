@@ -56,6 +56,18 @@ describe('Pipe: FilterPipe', () => {
       .toEqual([{ value: 'abc', nested: { number: 2 } }]);
   });
 
+  it('filters array of objects with nested objects', () => {
+    const array = [
+      { nested: { number: 1 } },
+      { nested: { number: 2 } },
+      { nested: null }
+    ];
+    const filter = { nested: { number: 2 } };
+    const result = [{ nested: { number: 2 } }];
+
+    expect(pipe.transform(array, filter)).toEqual(result);
+  });
+
   it('filters array of objects with nested objects (not every object has nested object)', () => {
     expect(pipe.transform([
       { value: 'a' },
