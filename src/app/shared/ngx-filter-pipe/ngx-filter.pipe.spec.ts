@@ -300,6 +300,15 @@ describe('Pipe: FilterPipe', () => {
     ]);
   });
 
+  it('should filter ', () => {
+    const objects = [
+      { name: 'asd' },
+      { firstName: 'asd' }
+    ];
+
+    expect(pipe.transform(objects , { $or: [{ name: 'asd' }, { firstName: 'asd' }] })).toEqual(objects);
+  });
+
   // describe('search in string', () => {
   //   const objects = ['Item 1', 'Item 2', 'Item 22', 'Item 123', 'Item 4'];
   //   const result = ['Item 2', 'Item 22', 'Item 123'];
