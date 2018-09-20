@@ -166,6 +166,29 @@ Result:
 <div>Italian</div>
 ```
 
+#### $or example with multiple predicates
+
+```
+const objects = [
+  { name: 'John' },
+  { firstName: 'John' }
+]
+
+const filter = { $or: [{ name: 'John' }, { firstName: 'John' }] }
+```
+In your template:
+```html
+<div *ngFor="let object of objects | filterBy: filter">
+  {{ object | json }}
+</div>
+```
+
+Result:
+```html
+<div>{ name: 'John' }</div>
+<div>{ firstName: 'John' }</div>
+```
+
 ### Use FilterPipe in a component
 
 Inject `FilterPipe` into your component and use it:
