@@ -6,7 +6,7 @@ import { User } from './user';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   objectsFilter = { test: 'value', num: 1, bool: true, nested: { val: 1 } };
@@ -40,22 +40,10 @@ export class AppComponent {
   ];
 
   stringsFilter = 'a';
-  strings = [
-    'asd',
-    'qwe',
-    'zxc'
-  ];
+  strings = ['asd', 'qwe', 'zxc'];
 
   numbersFilter = 1;
-  numbers = [
-    1,
-    2,
-    3,
-    12,
-    30,
-    21,
-    111
-  ];
+  numbers = [1, 2, 3, 12, 30, 21, 111];
 
   boolFilter = true;
   booleans = [true, false];
