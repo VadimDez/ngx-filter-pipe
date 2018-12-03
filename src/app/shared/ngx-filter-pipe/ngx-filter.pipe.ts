@@ -57,7 +57,7 @@ export class FilterPipe implements PipeTransform {
           continue;
         }
 
-        if (!FilterPipe.isFoundOnWalking(value, key)) {
+        if (!value || !FilterPipe.isFoundOnWalking(value, key)) {
           return false;
         }
 
@@ -90,7 +90,7 @@ export class FilterPipe implements PipeTransform {
       const length = filter.length;
 
       const arrayComparison = (i) => value.indexOf(filter[i]) !== -1;
-      const otherComparison = (i) => value === filter[i];
+      const otherComparison = (i) => this.isMatching(filter[i], value);
       const comparison = Array.isArray(value) ? arrayComparison : otherComparison;
 
       for (let i = 0; i < length; i++) {

@@ -1,5 +1,30 @@
 # Changelog
 
+## 2.1.2
+* [[#65](https://github.com/VadimDez/ngx-filter-pipe/issues/65)] - Filter by two variables didn't work
+* [[#69](https://github.com/VadimDez/ngx-filter-pipe/pull/69)] - fix filter with multiple fields
+
+### Improvements
+Now `$or` can filter with multiple predicates
+
+```ts
+class AppComponent {
+  objects = [
+    { name: 'John' },
+    { firstName: 'John' }
+  ];
+  
+  constructor(private filter: FilterPipe) {
+    let result = this.filter.transform(this.objects, { $or: [{ name: 'John' }, { firstName: 'John' }] });
+    console.log(result); // [{ name: 'John' }, { firstName: 'John' }]
+  }
+}
+```
+
+## 2.1.1
+* [[#67](https://github.com/VadimDez/ngx-filter-pipe/issues/67)] - Filtering Array with null Nested Objects
+* [[#68](https://github.com/VadimDez/ngx-filter-pipe/pull/68)] - fix filter when nested object is null
+
 ## 2.1.0
 * [[#55](https://github.com/VadimDez/ngx-filter-pipe/pull/55)] - Made pipe impure to detect changes in arrays and objects
 * [[#54](https://github.com/VadimDez/ngx-filter-pipe/issues/54)] - Change detection not firing with object
