@@ -11,10 +11,10 @@ export class User {
   }
 
   getName() {
-    return `${ this.firstName } ${ this.lastName }`;
+    return `${this.firstName} ${this.lastName}`;
   }
 
   get name() {
-    return `${ this.firstName } ${ this.lastName }`;
+    return `${this.firstName} ${this.lastName}`;
   }
 }

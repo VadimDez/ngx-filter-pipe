@@ -9,5 +9,4 @@ import { FilterPipe } from './ngx-filter.pipe';
   providers: [FilterPipe],
   exports: [FilterPipe]
 })
-
 export class FilterPipeModule {}

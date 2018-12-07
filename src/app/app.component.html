@@ -33,19 +33,15 @@
               Filters:
               <div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="object.test"
-                         [(ngModel)]="objectsFilter.test"
-                         [value]="objectsFilter.test"
-                  >
+                  <input class="mdl-textfield__input" type="text" id="object.test" [(ngModel)]="objectsFilter.test"
+                    [value]="objectsFilter.test">
                   <label class="mdl-textfield__label" for="object.test">object.test</label>
                 </div>
               </div>
               <div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="object.num"
-                         [(ngModel)]="objectsFilter.num"
-                         [value]="objectsFilter.num"
-                  >
+                  <input class="mdl-textfield__input" type="text" id="object.num" [(ngModel)]="objectsFilter.num"
+                    [value]="objectsFilter.num">
                   <label class="mdl-textfield__label" for="object.num">object.num</label>
                 </div>
               </div>
@@ -55,36 +51,21 @@
                     <label>object.bool</label>
                   </div>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option1-true">
-                    <input [(ngModel)]="objectsFilter.bool"
-                           [value]="true"
-                           type="radio"
-                           id="option1-true"
-                           class="mdl-radio__button"
-                           name="options"
-                           checked
-                    >
+                    <input [(ngModel)]="objectsFilter.bool" [value]="true" type="radio" id="option1-true" class="mdl-radio__button"
+                      name="options" checked>
                     <span class="mdl-radio__label">True</span>
                   </label>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option1-false">
-                    <input [(ngModel)]="objectsFilter.bool"
-                           [value]="false"
-                           type="radio"
-                           id="option1-false"
-                           class="mdl-radio__button"
-                           name="options"
-                    >
+                    <input [(ngModel)]="objectsFilter.bool" [value]="false" type="radio" id="option1-false" class="mdl-radio__button"
+                      name="options">
                     <span class="mdl-radio__label">False</span>
                   </label>
                 </form>
               </div>
               <div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input"
-                         type="text"
-                         id="object.nested.val"
-                         [(ngModel)]="objectsFilter.nested.val"
-                         [value]="objectsFilter.nested.val"
-                  >
+                  <input class="mdl-textfield__input" type="text" id="object.nested.val" [(ngModel)]="objectsFilter.nested.val"
+                    [value]="objectsFilter.nested.val">
                   <label class="mdl-textfield__label" for="object.num">object.nested.val</label>
                 </div>
               </div>
@@ -92,14 +73,14 @@
               <div>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                   <thead>
-                  <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Object</th>
-                  </tr>
+                    <tr>
+                      <th class="mdl-data-table__cell--non-numeric">Object</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let item of objects | filterBy: objectsFilter">
-                    <td class="mdl-data-table__cell--non-numeric">{{ item | json }}</td>
-                  </tr>
+                    <tr *ngFor="let item of objects | filterBy: objectsFilter">
+                      <td class="mdl-data-table__cell--non-numeric">{{ item | json }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -124,24 +105,21 @@
                 Filters:
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="filter-string"
-                       [(ngModel)]="stringsFilter"
-                       [value]="stringsFilter"
-                >
+                <input class="mdl-textfield__input" type="text" id="filter-string" [(ngModel)]="stringsFilter" [value]="stringsFilter">
                 <label class="mdl-textfield__label" for="filter-string">Filter by string</label>
               </div>
 
               <div>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                   <thead>
-                  <tr>
-                    <th>String</th>
-                  </tr>
+                    <tr>
+                      <th>String</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let string of strings | filterBy: stringsFilter">
-                    <td>{{ string }}</td>
-                  </tr>
+                    <tr *ngFor="let string of strings | filterBy: stringsFilter">
+                      <td>{{ string }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -166,23 +144,21 @@
                 Filters:
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id="filter-number"
-                       [(ngModel)]="numbersFilter"
-                       [value]="numbersFilter"
-                >
+                <input class="mdl-textfield__input" type="number" id="filter-number" [(ngModel)]="numbersFilter"
+                  [value]="numbersFilter">
                 <label class="mdl-textfield__label" for="filter-number">Filter by number</label>
               </div>
               <div>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                   <thead>
-                  <tr>
-                    <th>Number</th>
-                  </tr>
+                    <tr>
+                      <th>Number</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let number of numbers | filterBy: numbersFilter">
-                    <td>{{ number }}</td>
-                  </tr>
+                    <tr *ngFor="let number of numbers | filterBy: numbersFilter">
+                      <td>{{ number }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -209,24 +185,13 @@
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <form>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-true">
-                    <input [(ngModel)]="boolFilter"
-                           [value]="true"
-                           type="radio"
-                           id="option-true"
-                           class="mdl-radio__button"
-                           name="options"
-                           checked
-                    >
+                    <input [(ngModel)]="boolFilter" [value]="true" type="radio" id="option-true" class="mdl-radio__button"
+                      name="options" checked>
                     <span class="mdl-radio__label">True</span>
                   </label>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-false">
-                    <input [(ngModel)]="boolFilter"
-                           [value]="false"
-                           type="radio"
-                           id="option-false"
-                           class="mdl-radio__button"
-                           name="options"
-                    >
+                    <input [(ngModel)]="boolFilter" [value]="false" type="radio" id="option-false" class="mdl-radio__button"
+                      name="options">
                     <span class="mdl-radio__label">False</span>
                   </label>
                 </form>
@@ -234,14 +199,14 @@
               <div>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                   <thead>
-                  <tr>
-                    <th>Boolean</th>
-                  </tr>
+                    <tr>
+                      <th>Boolean</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let bool of booleans | filterBy: boolFilter">
-                    <td>{{ bool }}</td>
-                  </tr>
+                    <tr *ngFor="let bool of booleans | filterBy: boolFilter">
+                      <td>{{ bool }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -257,7 +222,8 @@
                 Filter by comparing to function results.
               </p>
               <p>
-                In this example each object has a getter <b>name</b> that return full name by concatenating first name and last name.
+                In this example each object has a getter <b>name</b> that return full name by concatenating first name
+                and last name.
               </p>
             </div>
 
@@ -275,12 +241,8 @@
 
               <div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input"
-                         type="text"
-                         id="objectsWithGettersFilter.name"
-                         [(ngModel)]="objectsWithGettersFilter.name"
-                         [value]="objectsWithGettersFilter.name"
-                  >
+                  <input class="mdl-textfield__input" type="text" id="objectsWithGettersFilter.name" [(ngModel)]="objectsWithGettersFilter.name"
+                    [value]="objectsWithGettersFilter.name">
                   <label class="mdl-textfield__label" for="objectsWithGettersFilter.name">Filter by name</label>
                 </div>
               </div>
@@ -288,14 +250,14 @@
               <div>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                   <thead>
-                  <tr>
-                    <th>Object</th>
-                  </tr>
+                    <tr>
+                      <th>Object</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let object of objectsWithGetters | filterBy: objectsWithGettersFilter">
-                    <td>{{ object | json }}</td>
-                  </tr>
+                    <tr *ngFor="let object of objectsWithGetters | filterBy: objectsWithGettersFilter">
+                      <td>{{ object | json }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

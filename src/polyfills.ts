@@ -72,10 +72,10 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import "zone.js/dist/zone"; // Included with Angular CLI.
+import 'zone.js/dist/zone'; // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
 
-import "./../node_modules/material-design-lite";
+import './../node_modules/material-design-lite';
