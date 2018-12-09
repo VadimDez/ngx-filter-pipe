@@ -23,6 +23,11 @@
     "url": "https://github.com/VadimDez/ngx-filter-pipe/issues"
   },
   "homepage": "https://github.com/VadimDez/ngx-filter-pipe#readme",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    }
+  },
   "peerDependencies": {
     "@angular/core": ">=5.0.0"
   },
