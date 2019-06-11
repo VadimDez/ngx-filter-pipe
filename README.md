@@ -1,12 +1,12 @@
 <h1 align="center">Angular5+ Filter Pipe</h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/ng2-filter-pipe">
-    <img src="https://img.shields.io/npm/dm/ng2-filter-pipe.svg?style=flat" alt="downloads">
-  </a>
-  
   <a href="https://www.npmjs.com/package/ngx-filter-pipe">
     <img src="https://img.shields.io/npm/dm/ngx-filter-pipe.svg?style=flat" alt="downloads">
+  </a>
+  
+  <a href="https://www.npmjs.com/package/ng2-filter-pipe">
+    <img src="https://img.shields.io/npm/dm/ng2-filter-pipe.svg?style=flat" alt="downloads">
   </a>
 
   <a href="https://travis-ci.org/VadimDez/ngx-filter-pipe" alt="build">
