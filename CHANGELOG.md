@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.3
+
+- [[#77](https://github.com/VadimDez/ngx-filter-pipe/issues/77)] - Upgrade to Angular 8
+
 ## 2.1.2
 
 - [[#65](https://github.com/VadimDez/ngx-filter-pipe/issues/65)] - Filter by two variables didn't work
