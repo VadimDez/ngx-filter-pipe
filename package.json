@@ -15,6 +15,10 @@
     "packagr": "ng-packagr -p package.json",
     "docs": "ng build --prod --output-path docs --base-href ngx-filter-pipe && cp ./docs/index.html ./docs/404.html"
   },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://vadimdez@github.com/VadimDez/ngx-filter-pipe.git"
