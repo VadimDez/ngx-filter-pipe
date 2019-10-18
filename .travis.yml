@@ -6,7 +6,7 @@ addons:
 language: node_js
 
 node_js:
-  - '8'
+  - '10.16.0'
 before_install:
 #  - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
