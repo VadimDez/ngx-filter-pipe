@@ -20,6 +20,10 @@
   <a href="https://david-dm.org/vadimdez/ngx-filter-pipe" title="dependencies status">
     <img src="https://david-dm.org/vadimdez/ngx-filter-pipe.svg" height="18">
   </a>
+  
+  <a href="https://greenkeeper.io/" title="Greenkeeper badge">
+    <img src="https://badges.greenkeeper.io/VadimDez/ngx-filter-pipe.svg" alt="Greenkeeper badge" />
+  </a>
 </p>
 
 > Filter arrays
