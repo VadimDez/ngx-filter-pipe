@@ -32,6 +32,8 @@ Angular 5+ pipeline for filtering arrays.
 
 ### Demo Page
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/VadimDez/ngx-filter-pipe.svg)](https://greenkeeper.io/)
+
 [https://vadimdez.github.io/ngx-filter-pipe/](https://vadimdez.github.io/ngx-filter-pipe/)
 
 or see demo code
