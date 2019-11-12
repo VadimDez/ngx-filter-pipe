@@ -220,6 +220,8 @@ Run tests
 npm test
 ```
 
+## Contribute
+
 ## License
 
 [MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
