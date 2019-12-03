@@ -24,6 +24,10 @@
   <a href="https://greenkeeper.io/" title="Greenkeeper badge">
     <img src="https://badges.greenkeeper.io/VadimDez/ngx-filter-pipe.svg" alt="Greenkeeper badge" />
   </a>
+  
+  <a href="https://www.paypal.me/vadimdez" title="Donate to this project using Paypal">
+    <img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" />
+  </a>
 </p>
 
 > Filter arrays
