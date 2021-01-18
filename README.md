@@ -82,9 +82,10 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { AppComponent } from './app';
  
 import { FilterPipeModule } from 'ngx-filter-pipe';
- 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
-  imports: [BrowserModule, FilterPipeModule],
+  imports: [BrowserModule, FormsModule, FilterPipeModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
