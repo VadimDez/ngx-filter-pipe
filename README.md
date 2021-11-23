@@ -8,10 +8,6 @@
   <a href="https://www.npmjs.com/package/ng2-filter-pipe">
     <img src="https://img.shields.io/npm/dm/ng2-filter-pipe.svg?style=flat" alt="downloads">
   </a>
-
-  <a href="https://travis-ci.org/VadimDez/ngx-filter-pipe" alt="build">
-    <img src="https://travis-ci.org/VadimDez/ngx-filter-pipe.svg?branch=master" height="18">
-  </a>
   
   <a href="https://badge.fury.io/js/ngx-filter-pipe">
     <img src="https://badge.fury.io/js/ngx-filter-pipe.svg" alt="npm version" height="18">
