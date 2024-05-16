@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.3 - 16.05.2024
+
+- [[#154](https://github.com/VadimDez/ngx-filter-pipe/pull/154)] - Update to Angular 17 & Ivy
+- [[#153](https://github.com/VadimDez/ngx-filter-pipe/issues/153)] - Impossible to use in Angular 16
+
 ## 2.1.3
 
 - [[#77](https://github.com/VadimDez/ngx-filter-pipe/issues/77)] - Upgrade to Angular 8
@@ -19,7 +24,7 @@ class AppComponent {
 
   constructor(private filter: FilterPipe) {
     let result = this.filter.transform(this.objects, {
-      $or: [{ name: 'John' }, { firstName: 'John' }]
+      $or: [{ name: 'John' }, { firstName: 'John' }],
     });
     console.log(result); // [{ name: 'John' }, { firstName: 'John' }]
   }
