@@ -2,11 +2,16 @@ import { Component } from '@angular/core';
 
 import { FilterPipe } from './shared/ngx-filter-pipe/ngx-filter.pipe';
 import { User } from './user';
+import { RouterOutlet } from '@angular/router';
+import { JsonPipe, NgFor } from '@angular/common';
+import { AppModule } from './app.module';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss',
+  imports: [RouterOutlet, NgFor, JsonPipe, AppModule],
 })
 export class AppComponent {
   objectsFilter = { test: 'value', num: 1, bool: true, nested: { val: 1 } };

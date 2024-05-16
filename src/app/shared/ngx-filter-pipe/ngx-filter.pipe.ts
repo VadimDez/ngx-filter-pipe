@@ -9,7 +9,7 @@ import { Pipe, Injectable, PipeTransform } from '@angular/core';
 })
 @Injectable()
 export class FilterPipe implements PipeTransform {
-  static isFoundOnWalking(value, key) {
+  static isFoundOnWalking(value: any, key: any) {
     let walker = value;
     let found = false;
     do {
@@ -25,7 +25,7 @@ export class FilterPipe implements PipeTransform {
     return found;
   }
 
-  static isNumber(value) {
+  static isNumber(value: any) {
     return !isNaN(parseInt(value, 10)) && isFinite(value);
   }
 
@@ -36,21 +36,21 @@ export class FilterPipe implements PipeTransform {
     return typeof value === 'function' ? value() : value;
   }
 
-  private filterByString(filter) {
+  private filterByString(filter: string) {
     if (filter) {
       filter = filter.toLowerCase();
     }
-    return value =>
+    return (value: any) =>
       !filter ||
       (value ? ('' + value).toLowerCase().indexOf(filter) !== -1 : false);
   }
 
-  private filterByBoolean(filter) {
-    return value => Boolean(value) === filter;
+  private filterByBoolean(filter: boolean) {
+    return (value: any) => Boolean(value) === filter;
   }
 
-  private filterByObject(filter) {
-    return value => {
+  private filterByObject(filter: any) {
+    return (value: any) => {
       for (const key in filter) {
         if (key === '$or') {
           if (!this.filterByOr(filter.$or)(FilterPipe.getValue(value))) {
@@ -72,7 +72,7 @@ export class FilterPipe implements PipeTransform {
     };
   }
 
-  private isMatching(filter, val) {
+  private isMatching(filter: any, val: any) {
     switch (typeof filter) {
       case 'boolean':
         return this.filterByBoolean(filter)(val);
@@ -91,8 +91,8 @@ export class FilterPipe implements PipeTransform {
     return (value: any) => {
       const length = filter.length;
 
-      const arrayComparison = i => value.indexOf(filter[i]) !== -1;
-      const otherComparison = i => this.isMatching(filter[i], value);
+      const arrayComparison = (i: any) => value.indexOf(filter[i]) !== -1;
+      const otherComparison = (i: any) => this.isMatching(filter[i], value);
       const comparison = Array.isArray(value)
         ? arrayComparison
         : otherComparison;

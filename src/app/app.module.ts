@@ -9,16 +9,17 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     MDL
   ],
   imports: [
-    BrowserModule,
     FormsModule,
-    
+
     FilterPipeModule
   ],
+  exports: [
+    FormsModule,
+    FilterPipeModule,
+  ],
   providers: [],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }
