@@ -13,7 +13,7 @@
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p package.json",
+    "packagr": "ng-packagr -p ng-package.json",
     "docs": "ng build --prod --output-path docs --base-href ngx-filter-pipe && cp ./docs/index.html ./docs/404.html"
   },
   "engines": {
@@ -28,11 +28,6 @@
     "url": "https://github.com/VadimDez/ngx-filter-pipe/issues"
   },
   "homepage": "https://github.com/VadimDez/ngx-filter-pipe#readme",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "public_api.ts"
-    }
-  },
   "peerDependencies": {
     "@angular/core": ">=5.0.0"
   },
@@ -58,7 +53,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "material-design-lite": "^1.3.0",
-    "ng-packagr": "^17.3.0",
+    "ng-  r": "^17.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.4.2",
