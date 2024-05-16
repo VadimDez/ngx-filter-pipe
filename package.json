@@ -17,8 +17,8 @@
     "docs": "ng build --prod --output-path docs --base-href ngx-filter-pipe && cp ./docs/index.html ./docs/404.html"
   },
   "engines": {
-    "node": "10.16.0",
-    "npm": "6.9.0"
+    "node": "20.4.0",
+    "npm": "9.7.2"
   },
   "repository": {
     "type": "git",
