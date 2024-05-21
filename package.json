@@ -10,7 +10,7 @@
     "build": "ng build --configuration production",
     "test": "ng test --watch=false",
     "test:w": "ng test",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "test:ci": "ng test --watch=false --no-progress --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json",
