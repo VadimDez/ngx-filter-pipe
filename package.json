@@ -1,6 +1,6 @@
 {
   "name": "ngx-filter-pipe",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Angular 5+ pipeline for filtering arrays",
   "author": "Vadym Yatsyuk <vadym.yatsyuk@gmail.com>",
   "license": "MIT",
@@ -17,8 +17,8 @@
     "docs": "ng build --configuration production --output-path docs --base-href ngx-filter-pipe && cp -R ./docs/browser/* ./docs/ && rm -rf ./docs/browser && cp ./docs/index.html ./docs/404.html"
   },
   "engines": {
-    "node": "20.4.0",
-    "npm": "9.7.2"
+    "node": "20.12",
+    "npm": "10.8"
   },
   "repository": {
     "type": "git",
