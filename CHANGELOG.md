@@ -2,7 +2,7 @@
 
 ## 3.0.1 - 07.01.2024
 
-- [[#154](https://github.com/VadimDez/ngx-filter-pipe/issues/158)] - Update to use in Node 20.12
+- [[#154](https://github.com/VadimDez/ngx-filter-pipe/issues/158)] - Update to use in Node 20.15
 
 ## 2.1.3 - 16.05.2024
 
