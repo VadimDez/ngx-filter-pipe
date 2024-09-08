@@ -16,10 +16,6 @@
     "packagr": "ng-packagr -p ng-package.json",
     "docs": "ng build --configuration production --output-path docs --base-href ngx-filter-pipe && cp -R ./docs/browser/* ./docs/ && rm -rf ./docs/browser && cp ./docs/index.html ./docs/404.html"
   },
-  "engines": {
-    "node": "20.4.0",
-    "npm": "9.7.2"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://vadimdez@github.com/VadimDez/ngx-filter-pipe.git"
