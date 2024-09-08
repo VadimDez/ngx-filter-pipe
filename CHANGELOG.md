@@ -1,6 +1,11 @@
 # Changelog
 
-## 2.1.3 - 16.05.2024
+## 3.0.1 - 08.09.2024
+
+- [[#158](https://github.com/VadimDez/ngx-filter-pipe/issues/158)] - Limited to only 20.4.0 node version
+- [[#162](https://github.com/VadimDez/ngx-filter-pipe/pull/162)] - Remove "engines" to fix #158
+
+## 3.0.0 - 16.05.2024
 
 - [[#154](https://github.com/VadimDez/ngx-filter-pipe/pull/154)] - Update to Angular 17 & Ivy
 - [[#153](https://github.com/VadimDez/ngx-filter-pipe/issues/153)] - Impossible to use in Angular 16
